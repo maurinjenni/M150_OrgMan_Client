@@ -1,14 +1,10 @@
-import { AppPage } from './app.po';
+import { UltimaPage } from './app.po';
 
-describe('orgman App', () => {
-  let page: AppPage;
+describe('ultima App', function() {
+  let page: UltimaPage;
 
   beforeEach(() => {
-    page = new AppPage();
+    page = new UltimaPage();
   });
 
-  it('should display welcome message', () => {
-    page.navigateTo();
-    expect(page.getParagraphText()).toEqual('Welcome to app!');
-  });
 });
