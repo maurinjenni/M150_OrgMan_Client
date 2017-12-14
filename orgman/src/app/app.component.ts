@@ -17,7 +17,7 @@ declare var jQuery: any;
 })
 export class AppComponent implements AfterViewInit, OnDestroy {
 
-    layoutCompact = true;
+    layoutCompact = false;
 
     layoutMode: MenuOrientation = MenuOrientation.STATIC;
 
