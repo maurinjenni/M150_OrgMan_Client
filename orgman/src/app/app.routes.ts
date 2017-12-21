@@ -1,6 +1,7 @@
 import {Routes, RouterModule} from '@angular/router';
 import {ModuleWithProviders} from '@angular/core';
 import {DashboardDemoComponent} from './demo/view/dashboarddemo.component';
+import {DashboardComponent} from './orgman/view/dashboard.component';
 import {SampleDemoComponent} from './demo/view/sampledemo.component';
 import {FormsDemoComponent} from './demo/view/formsdemo.component';
 import {DataDemoComponent} from './demo/view/datademo.component';
@@ -16,7 +17,7 @@ import {UtilsDemoComponent} from './demo/view/utilsdemo.component';
 import {DocumentationComponent} from './demo/view/documentation.component';
 
 export const routes: Routes = [
-    {path: '', component: DashboardDemoComponent},
+    {path: '', component: DashboardComponent},
     {path: 'sample', component: SampleDemoComponent},
     {path: 'forms', component: FormsDemoComponent},
     {path: 'data', component: DataDemoComponent},
