@@ -13,10 +13,6 @@ import {AppComponent} from './app.component';
                 <a id="menu-button" href="#" (click)="app.onMenuButtonClick($event)">
                     <i></i>
                 </a>
-
-                <a id="topbar-menu-button" href="#" (click)="app.onTopbarMenuButtonClick($event)">
-                    <i class="material-icons">menu</i>
-                </a>
             </div>
         </div>
     `
