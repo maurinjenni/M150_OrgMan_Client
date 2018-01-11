@@ -1,25 +1,23 @@
 <div class="ui-g dashboard">
-    <div class="ui-g-12 ui-lg-8 ui-fluid quicksearch-form">
-        <p-panel header="Quick Adress-Search">
+    <div class="ui-g-12 ui-lg-6 ui-fluid quicksearch-form">
+        <p-panel header="Quick Address-Search">
             <div class="ui-g">
                 <div class="ui-g-12">
                     <span class="md-inputfield">
-                        <input id="searchtext" type="text" pInputText />
-                        <label for="searchtext">Search all adresses</label>
+                        <input id="searchtext" type="text" pInputText required/>
+                        <label for="searchtext">Search for Firstname or Lastname</label>
                     </span>
                 </div>
             </div>
             <button type="button" label="Search" icon="ui-icon-send" pButton></button>
             <p-dataTable [value]="searchResult" [rows]="5" [paginator]="false" [pageLinks]="0" [responsive]="true">
-                <p-header>Results</p-header>
-                <p-column field="vin" header="Vin"></p-column>
-                <p-column field="year" header="Year"></p-column>
-                <p-column field="brand" header="Brand"></p-column>
-                <p-column field="color" header="Color"></p-column>
+                <p-header>{{searchResult.length}} Results</p-header>
+                <p-column field="firstname" header="Firstname"></p-column>
+                <p-column field="lastname" header="Lastname"></p-column>
             </p-dataTable>
         </p-panel>
     </div>
-    <div class="ui-g-12 ui-lg-4 task-list">
+    <div class="ui-g-12 ui-lg-6 task-list">
         <p-panel header="Next {{events.length}} Events">
             <ul>
                 <li *ngFor="let event of events">

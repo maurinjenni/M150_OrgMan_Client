@@ -19,12 +19,12 @@ export class DashboardComponent implements OnInit {
 
     ngOnInit() {
         this.searchResult = [
-            {'brand': 'VW', 'year': 2012, 'color': 'White', 'vin': 'dsad231ff'},
-            {'brand': 'Audi', 'year': 2011, 'color': 'Black', 'vin': 'gwregre345'},
-            {'brand': 'Renault', 'year': 2005, 'color': 'Gray', 'vin': 'h354htr'},
-            {'brand': 'BMW', 'year': 2003, 'color': 'Blue', 'vin': 'j6w54qgh'},
-            {'brand': 'Mercedes', 'year': 1995, 'color': 'White', 'vin': 'hrtwy34'},
-            ];
+            {'firstname': 'test', 'lastname': 'test'},
+            {'firstname': 'test', 'lastname': 'test'},
+            {'firstname': 'test', 'lastname': 'test'},
+            {'firstname': 'test', 'lastname': 'test'},
+            {'firstname': 'test', 'lastname': 'test'}
+        ];
 
         this.events = [
           '12.12.12: Test',
