@@ -21,7 +21,7 @@ export class AppMenuComponent implements OnInit {
         this.model = [
             {label: 'Dashboard', icon: 'dashboard', routerLink: ['/']},
             {label: 'Addressmanagement', icon: 'format_list_bulleted', routerLink: ['/address']},
-            {label: 'Calendar', icon: 'event'},
+            {label: 'Calendar', icon: 'event', routerLink: ['/calendar']},
             {label: 'Fileshare', icon: 'folder_shared'},
             {label: 'Settings', icon: 'settings_application',
                 items: [

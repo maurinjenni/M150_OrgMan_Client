@@ -3,6 +3,7 @@ import {ModuleWithProviders} from '@angular/core';
 import {DashboardDemoComponent} from './demo/view/dashboarddemo.component';
 import {DashboardComponent} from './orgman/view/dashboard.component';
 import {AddressComponent} from './orgman/view/address.component';
+import {CalendarComponent} from './orgman/view/calendar.component';
 import {SampleDemoComponent} from './demo/view/sampledemo.component';
 import {FormsDemoComponent} from './demo/view/formsdemo.component';
 import {DataDemoComponent} from './demo/view/datademo.component';
@@ -20,6 +21,7 @@ import {DocumentationComponent} from './demo/view/documentation.component';
 export const routes: Routes = [
     {path: '', component: DashboardComponent},
     {path: 'address', component: AddressComponent},
+    {path: 'calendar', component: CalendarComponent},
     {path: 'sample', component: SampleDemoComponent},
     {path: 'forms', component: FormsDemoComponent},
     {path: 'data', component: DataDemoComponent},
