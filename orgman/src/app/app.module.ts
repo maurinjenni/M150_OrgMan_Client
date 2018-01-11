@@ -82,6 +82,7 @@ import {AppRightpanelComponent} from './app.rightpanel.component';
 import {AppInlineProfileComponent} from './app.profile.component';
 import {DashboardDemoComponent} from './demo/view/dashboarddemo.component';
 import {DashboardComponent} from './orgman/view/dashboard.component';
+import {AddressComponent} from './orgman/view/address.component';
 import {SampleDemoComponent} from './demo/view/sampledemo.component';
 import {FormsDemoComponent} from './demo/view/formsdemo.component';
 import {DataDemoComponent} from './demo/view/datademo.component';
@@ -186,6 +187,7 @@ import {BreadcrumbService} from './breadcrumb.service';
         AppInlineProfileComponent,
         DashboardDemoComponent,
         DashboardComponent,
+        AddressComponent,
         SampleDemoComponent,
         FormsDemoComponent,
         DataDemoComponent,
