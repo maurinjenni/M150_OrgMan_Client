@@ -18,16 +18,16 @@
     <div class="ui-g-12">
         <div class="card card-w-title">
             <h1>Searchresults</h1>
-            <p-dataTable [value]="searchResult" selectionMode="single" [(selection)]="selectedCar" 
-                [paginator]="true" [rows]="10" [responsive]="true">
-                <p-header>Addresses</p-header>
+            <p-dataTable [value]="searchResult" selectionMode="single" [(selection)]="selectedAddress" 
+                datKey="Id" [paginator]="true" [rows]="10" [responsive]="true">
+                <p-header>Address</p-header>
                 <p-column field="Firstname" header="Firstname" [sortable]="true"></p-column>
                 <p-column field="Lastname" header="Lastname" [sortable]="true"></p-column>
                 <p-column field="Street" header="Street" [sortable]="true"></p-column>
-                <p-column field="HouseNumber" header="HouseNumber" [sortable]="true"></p-column>
+                <p-column field="HouseNumber" header="House-Number" [sortable]="true"></p-column>
                 <p-column field="Postcode" header="Postcode" [sortable]="true"></p-column>
                 <p-column field="City" header="City" [sortable]="true"></p-column>
-                <p-column field="IsMember" header="IsMember" [sortable]="true"></p-column>
+                <p-column field="IsMember" header="Is Member" [sortable]="true"></p-column>
             </p-dataTable>
         </div>
     </div>

@@ -32,21 +32,17 @@ export class AddressComponent implements OnInit {
 
     ngOnInit() {
         this.searchResult = [
-            {Firstname: 'Test', Lastname: 'Test', Street: 'Test',
+            {Id: 1, Firstname: 'Test', Lastname: 'Test', Street: 'Test',
             HouseNumber: 'Test', Postcode: 'Test', City: 'Test', IsMember: 'Test'},
-            {Firstname: 'Test', Lastname: 'Test', Street: 'Test',
+            {Id: 2, Firstname: 'Test', Lastname: 'Test', Street: 'Test',
             HouseNumber: 'Test', Postcode: 'Test', City: 'Test', IsMember: 'Test'},
-            {Firstname: 'Test', Lastname: 'Test', Street: 'Test',
+            {Id: 3, Firstname: 'Test', Lastname: 'Test', Street: 'Test',
             HouseNumber: 'Test', Postcode: 'Test', City: 'Test', IsMember: 'Test'},
-            {Firstname: 'Test', Lastname: 'Test', Street: 'Test',
+            {Id: 4, Firstname: 'Test', Lastname: 'Test', Street: 'Test',
             HouseNumber: 'Test', Postcode: 'Test', City: 'Test', IsMember: 'Test'},
-            {Firstname: 'Test', Lastname: 'Test', Street: 'Test',
+            {Id: 5, Firstname: 'Test', Lastname: 'Test', Street: 'Test',
             HouseNumber: 'Test', Postcode: 'Test', City: 'Test', IsMember: 'Test'},
-            {Firstname: 'Test', Lastname: 'Test', Street: 'Test',
-            HouseNumber: 'Test', Postcode: 'Test', City: 'Test', IsMember: 'Test'},
-            {Firstname: 'Test', Lastname: 'Test', Street: 'Test',
-            HouseNumber: 'Test', Postcode: 'Test', City: 'Test', IsMember: 'Test'},
-            {Firstname: 'Test', Lastname: 'Test', Street: 'Test',
+            {Id: 6, Firstname: 'Test', Lastname: 'Test', Street: 'Test',
             HouseNumber: 'Test', Postcode: 'Test', City: 'Test', IsMember: 'Test'}
         ];
     }
