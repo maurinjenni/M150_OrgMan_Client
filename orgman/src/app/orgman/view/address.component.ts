@@ -1,6 +1,7 @@
 import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {TreeNode} from 'primeng/primeng';
 import {BreadcrumbService} from '../../breadcrumb.service';
+import { Router } from '@angular/router';
 
 @Component({
     templateUrl: './address.component.html',
@@ -12,7 +13,7 @@ export class AddressComponent implements OnInit {
 
     selectedAddress: any;
 
-    constructor(private breadcrumbService: BreadcrumbService) {
+    constructor(private breadcrumbService: BreadcrumbService, private router: Router) {
         this.breadcrumbService.setItems([
             { label: 'Addressmanagement'}
         ]);
@@ -33,5 +34,9 @@ export class AddressComponent implements OnInit {
             {Id: 6, Firstname: 'Test', Lastname: 'Test', Street: 'Test',
             HouseNumber: 'Test', Postcode: 'Test', City: 'Test', IsMember: 'Test'}
         ];
+    }
+
+    handleRowDblclick(event) {
+        this.router.navigate(['/address', event.data.Id]);
     }
 }

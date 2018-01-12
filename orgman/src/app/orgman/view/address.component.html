@@ -19,7 +19,7 @@
         <div class="card card-w-title">
             <h1>Searchresults</h1>
             <p-dataTable [value]="searchResult" selectionMode="single" [(selection)]="selectedAddress" 
-                datKey="Id" [paginator]="true" [rows]="10" [responsive]="true">
+                datKey="Id" [paginator]="true" [rows]="10" [responsive]="true" (onRowDblclick)="handleRowDblclick($event)">
                 <p-header>Address</p-header>
                 <p-column field="Firstname" header="Firstname" [sortable]="true"></p-column>
                 <p-column field="Lastname" header="Lastname" [sortable]="true"></p-column>
