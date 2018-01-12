@@ -4,18 +4,6 @@ import {BreadcrumbService} from '../../breadcrumb.service';
 
 @Component({
     templateUrl: './address.component.html',
-    styles: [`
-        .cars-datalist ul {
-            margin: 0;
-            padding: 0;
-        }
-
-        @media (max-width:640px) {
-            .cars-datalist .text-column {
-                text-align: center;
-            }
-        }
-    `],
     encapsulation: ViewEncapsulation.None
 })
 export class AddressComponent implements OnInit {
@@ -26,7 +14,7 @@ export class AddressComponent implements OnInit {
 
     constructor(private breadcrumbService: BreadcrumbService) {
         this.breadcrumbService.setItems([
-            { label: 'Addressmanagement', routerLink: ['/address']}
+            { label: 'Addressmanagement'}
         ]);
      }
 

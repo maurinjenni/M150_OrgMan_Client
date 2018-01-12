@@ -26,7 +26,7 @@ export class CalendarComponent implements OnInit {
 
     constructor(private breadcrumbService: BreadcrumbService) {
         this.breadcrumbService.setItems([
-            { label: 'Calendar', routerLink: ['/calendar'] }
+            { label: 'Calendar' }
         ]);
      }
 
