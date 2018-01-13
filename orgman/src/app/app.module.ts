@@ -1,11 +1,11 @@
 import {NgModule} from '@angular/core';
 import {FormsModule} from '@angular/forms';
-import {HttpModule} from '@angular/http';
+import {Http, HttpModule, Headers} from '@angular/http';
 import {BrowserModule} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {LocationStrategy, HashLocationStrategy} from '@angular/common';
+import {LocationStrategy, HashLocationStrategy, Location} from '@angular/common';
 import {AppRoutes} from './app.routes';
-import 'rxjs/add/operator/toPromise';
+import 'rxjs/add/operator/toPromise'; 
 
 import {AccordionModule} from 'primeng/primeng';
 import {AutoCompleteModule} from 'primeng/primeng';
@@ -84,6 +84,7 @@ import {DashboardDemoComponent} from './demo/view/dashboarddemo.component';
 import {DashboardComponent} from './orgman/view/dashboard.component';
 import {AddressComponent} from './orgman/view/address.component';
 import {AddressDetailComponent} from './orgman/view/addressdetail.component';
+import {LoginComponent} from './orgman/view/login.component';
 import {CalendarComponent} from './orgman/view/calendar.component';
 import {SampleDemoComponent} from './demo/view/sampledemo.component';
 import {FormsDemoComponent} from './demo/view/formsdemo.component';
@@ -104,6 +105,11 @@ import {CountryService} from './demo/service/countryservice';
 import {EventService} from './demo/service/eventservice';
 import {NodeService} from './demo/service/nodeservice';
 import {BreadcrumbService} from './breadcrumb.service';
+
+import {AuthenticationService} from './orgman/service/authenticationService';
+import {CookieService} from './orgman/service/cookieService';
+import {LoginRouteGuard} from './orgman/service/loginRouteGuard';
+
 
 @NgModule({
     imports: [
@@ -191,6 +197,7 @@ import {BreadcrumbService} from './breadcrumb.service';
         DashboardComponent,
         AddressComponent,
         AddressDetailComponent,
+        LoginComponent,
         CalendarComponent,
         SampleDemoComponent,
         FormsDemoComponent,
@@ -207,7 +214,7 @@ import {BreadcrumbService} from './breadcrumb.service';
     ],
     providers: [
         {provide: LocationStrategy, useClass: HashLocationStrategy},
-        CarService, CountryService, EventService, NodeService, BreadcrumbService
+        CarService, CountryService, EventService, NodeService, BreadcrumbService,AuthenticationService, CookieService, LoginRouteGuard, Location
     ],
     bootstrap: [AppComponent]
 })

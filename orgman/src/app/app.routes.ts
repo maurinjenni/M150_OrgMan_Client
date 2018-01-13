@@ -18,12 +18,15 @@ import {ChartsDemoComponent} from './demo/view/chartsdemo.component';
 import {FileDemoComponent} from './demo/view/filedemo.component';
 import {UtilsDemoComponent} from './demo/view/utilsdemo.component';
 import {DocumentationComponent} from './demo/view/documentation.component';
+import { LoginComponent } from './orgman/view/login.component';
+import {LoginRouteGuard} from './orgman/service/loginRouteGuard';
 
 export const routes: Routes = [
     {path: '', component: DashboardComponent},
+    {path: 'login', component: LoginComponent},
     {path: 'address', component: AddressComponent},
     {path: 'address/:id', component: AddressDetailComponent},
-    {path: 'calendar', component: CalendarComponent},
+    {path: 'calendar', component: CalendarComponent, canActivate:[LoginRouteGuard]},
     {path: 'sample', component: SampleDemoComponent},
     {path: 'forms', component: FormsDemoComponent},
     {path: 'data', component: DataDemoComponent},

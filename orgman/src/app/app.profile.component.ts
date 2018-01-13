@@ -1,5 +1,8 @@
-import {Component, trigger, state, transition, style, animate} from '@angular/core';
+import {Component, trigger, state, transition, style, animate, Injectable} from '@angular/core';
+import { Router } from '@angular/router';
+import {AuthenticationService} from './orgman/service/authenticationService';
 
+@Injectable()
 @Component({
     selector: 'app-inline-profile',
     template: `
@@ -19,7 +22,7 @@ import {Component, trigger, state, transition, style, animate} from '@angular/co
                 </a>
             </li>
             <li role="menuitem">
-                <a href="#" class="ripplelink" [attr.tabindex]="!active ? '-1' : null">
+                <a href="#/login" class="ripplelink" [attr.tabindex]="!active ? '-1' : null" (click)="logout($event)">
                     <i class="material-icons">power_settings_new</i>
                     <span>Logout</span>
                 </a>
@@ -40,11 +43,17 @@ import {Component, trigger, state, transition, style, animate} from '@angular/co
     ]
 })
 export class AppInlineProfileComponent {
-
     active: boolean;
+
+    constructor(private authenticationService: AuthenticationService,
+    private router: Router) {}  
 
     onClick(event) {
         this.active = !this.active;
         event.preventDefault();
+    }
+
+    logout(event){
+        this.authenticationService.logout();
     }
 }
