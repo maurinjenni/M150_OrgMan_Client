@@ -4,7 +4,13 @@ import {BreadcrumbService} from '../../breadcrumb.service';
 import {ActivatedRoute} from '@angular/router';
 
 @Component({
-    templateUrl: './addressdetail.component.html'
+    templateUrl: './addressdetail.component.html',
+    styles: [
+        `.fullwidth {
+            width: 100%;
+        }
+        `
+    ]
 })
 export class AddressDetailComponent implements OnInit, OnDestroy {
 
@@ -16,18 +22,26 @@ export class AddressDetailComponent implements OnInit, OnDestroy {
 
     filteredCountries: any[];
 
+    mandatories: any[];
+
     constructor(private breadcrumbService: BreadcrumbService, private route: ActivatedRoute) {
     }
 
     ngOnInit() {
         this.sub = this.route.params.subscribe(params => {
-            this.currentAddressId = params['id'];
+            this.currentAddressId = params['param'];
         });
 
         this.breadcrumbService.setItems([
             { label: 'Addressmanagement', routerLink: ['/address'] },
             { label: this.currentAddressId }
         ]);
+
+        this.mandatories = [
+            {titel: 'Mandatory1', key: 'M1'},
+            {titel: 'Mandatory2', key: 'M2'},
+            {titel: 'Mandatory3', key: 'M3'}
+        ];
     }
 
     ngOnDestroy() {
