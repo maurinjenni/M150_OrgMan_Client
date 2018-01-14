@@ -26,7 +26,7 @@ export const routes: Routes = [
     {path: 'login', component: LoginComponent},
     {path: 'address', component: AddressComponent},
     {path: 'address/:id', component: AddressDetailComponent},
-    {path: 'calendar', component: CalendarComponent, canActivate:[LoginRouteGuard]},
+    {path: 'calendar', component: CalendarComponent, canActivate: [LoginRouteGuard]},
     {path: 'sample', component: SampleDemoComponent},
     {path: 'forms', component: FormsDemoComponent},
     {path: 'data', component: DataDemoComponent},

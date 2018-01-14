@@ -5,7 +5,7 @@ import {BrowserModule} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {LocationStrategy, HashLocationStrategy, Location} from '@angular/common';
 import {AppRoutes} from './app.routes';
-import 'rxjs/add/operator/toPromise'; 
+import 'rxjs/add/operator/toPromise';
 
 import {AccordionModule} from 'primeng/primeng';
 import {AutoCompleteModule} from 'primeng/primeng';

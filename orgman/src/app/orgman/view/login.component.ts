@@ -24,36 +24,36 @@ import { Location } from '@angular/common';
 export class LoginComponent implements OnInit {
 
 
-    username : string;
-    password : string;
+    username: string;
+    password: string;
 
-    constructor(private breadcrumbService: BreadcrumbService, 
-        private authenticationService: AuthenticationService, 
+    constructor(private breadcrumbService: BreadcrumbService,
+        private authenticationService: AuthenticationService,
         private router: Router,
-        private location : Location, 
-        private activatedRoute : ActivatedRoute) {
+        private location: Location,
+        private activatedRoute: ActivatedRoute) {
         this.breadcrumbService.setItems([
             { label: 'Login Page', routerLink: ['/login']}
         ]);
      }
 
     ngOnInit() {
-       this.username = "";
-       this.password = "";
+       this.username = '';
+       this.password = '';
     }
 
-    OnLoginClick(){
-        var promise = this.authenticationService.login(this.username,this.password);
+    OnLoginClick() {
+        const promise = this.authenticationService.login(this.username, this.password);
 
         promise.then(() => {
-            this.router.navigateByUrl("");
+            this.router.navigateByUrl('');
         }).catch(() => {
-            this.router.navigateByUrl("login");
+            this.router.navigateByUrl('login');
         });
     }
 
-    OnPasswordForgottenClick(){
+    OnPasswordForgottenClick() {
         this.authenticationService.logout();
-        this.router.navigateByUrl("login");
+        this.router.navigateByUrl('login');
     }
 }

@@ -5,14 +5,14 @@ import { AuthenticationService } from './authenticationService';
 @Injectable()
 export class LoginRouteGuard implements CanActivate {
 
-  constructor(public authenticationService: AuthenticationService, public router: Router) {}  
+  constructor(public authenticationService: AuthenticationService, public router: Router) {}
 
-  canActivate() : boolean{
-    if(!this.authenticationService.isLoggedIn()){
-      this.router.navigate(["login"]);
+  canActivate(): boolean {
+    if (!this.authenticationService.isLoggedIn()) {
+      this.router.navigate(['login']);
       return true;
     }
-  
+
     return true;
   }
 }
