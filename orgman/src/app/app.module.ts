@@ -80,30 +80,12 @@ import {AppFooterComponent} from './app.footer.component';
 import {AppBreadcrumbComponent } from './app.breadcrumb.component';
 import {AppRightpanelComponent} from './app.rightpanel.component';
 import {AppInlineProfileComponent} from './app.profile.component';
-import {DashboardDemoComponent} from './demo/view/dashboarddemo.component';
 import {DashboardComponent} from './orgman/view/dashboard.component';
 import {AddressComponent} from './orgman/view/address.component';
 import {AddressDetailComponent} from './orgman/view/addressdetail.component';
 import {LoginComponent} from './orgman/view/login.component';
 import {CalendarComponent} from './orgman/view/calendar.component';
-import {SampleDemoComponent} from './demo/view/sampledemo.component';
-import {FormsDemoComponent} from './demo/view/formsdemo.component';
-import {DataDemoComponent} from './demo/view/datademo.component';
-import {PanelsDemoComponent} from './demo/view/panelsdemo.component';
-import {OverlaysDemoComponent} from './demo/view/overlaysdemo.component';
-import {MenusDemoComponent} from './demo/view/menusdemo.component';
-import {MessagesDemoComponent} from './demo/view/messagesdemo.component';
-import {MiscDemoComponent} from './demo/view/miscdemo.component';
-import {EmptyDemoComponent} from './demo/view/emptydemo.component';
-import {ChartsDemoComponent} from './demo/view/chartsdemo.component';
-import {FileDemoComponent} from './demo/view/filedemo.component';
-import {UtilsDemoComponent} from './demo/view/utilsdemo.component';
-import {DocumentationComponent} from './demo/view/documentation.component';
 
-import {CarService} from './demo/service/carservice';
-import {CountryService} from './demo/service/countryservice';
-import {EventService} from './demo/service/eventservice';
-import {NodeService} from './demo/service/nodeservice';
 import {BreadcrumbService} from './breadcrumb.service';
 
 import {AuthenticationService} from './orgman/service/authenticationService';
@@ -193,28 +175,19 @@ import {LoginRouteGuard} from './orgman/service/loginRouteGuard';
         AppBreadcrumbComponent,
         AppRightpanelComponent,
         AppInlineProfileComponent,
-        DashboardDemoComponent,
         DashboardComponent,
         AddressComponent,
         AddressDetailComponent,
         LoginComponent,
-        CalendarComponent,
-        SampleDemoComponent,
-        FormsDemoComponent,
-        DataDemoComponent,
-        PanelsDemoComponent,
-        OverlaysDemoComponent, MenusDemoComponent,
-        MessagesDemoComponent,
-        MiscDemoComponent,
-        ChartsDemoComponent,
-        EmptyDemoComponent,
-        FileDemoComponent,
-        UtilsDemoComponent,
-        DocumentationComponent
+        CalendarComponent
     ],
     providers: [
         {provide: LocationStrategy, useClass: HashLocationStrategy},
-        CarService, CountryService, EventService, NodeService, BreadcrumbService,AuthenticationService, CookieService, LoginRouteGuard, Location
+        BreadcrumbService,
+        AuthenticationService,
+        CookieService,
+        LoginRouteGuard,
+        Location
     ],
     bootstrap: [AppComponent]
 })
