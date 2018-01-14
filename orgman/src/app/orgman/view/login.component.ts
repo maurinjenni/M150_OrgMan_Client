@@ -7,18 +7,6 @@ import { Location } from '@angular/common';
 
 @Component({
     templateUrl: './login.component.html',
-    styles: [`
-        .cars-datalist ul {
-            margin: 0;
-            padding: 0;
-        }
-
-        @media (max-width:640px) {
-            .cars-datalist .text-column {
-                text-align: center;
-            }
-        }
-    `],
     encapsulation: ViewEncapsulation.None
 })
 export class LoginComponent implements OnInit {
@@ -33,7 +21,7 @@ export class LoginComponent implements OnInit {
         private location: Location,
         private activatedRoute: ActivatedRoute) {
         this.breadcrumbService.setItems([
-            { label: 'Login Page', routerLink: ['/login']}
+            { label: 'Login Page'}
         ]);
      }
 
