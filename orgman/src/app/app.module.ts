@@ -109,7 +109,7 @@ import {BreadcrumbService} from './breadcrumb.service';
 import {AuthenticationService} from './orgman/service/authenticationService';
 import {CookieService} from './orgman/service/cookieService';
 import {LoginRouteGuard} from './orgman/service/loginRouteGuard';
-
+import {CalendarService} from './orgman/service/calendarService';
 
 @NgModule({
     imports: [
@@ -214,7 +214,7 @@ import {LoginRouteGuard} from './orgman/service/loginRouteGuard';
     ],
     providers: [
         {provide: LocationStrategy, useClass: HashLocationStrategy},
-        CarService, CountryService, EventService, NodeService, BreadcrumbService,AuthenticationService, CookieService, LoginRouteGuard, Location
+        CarService, CountryService, EventService, NodeService, BreadcrumbService,AuthenticationService, CookieService, LoginRouteGuard, Location, CalendarService
     ],
     bootstrap: [AppComponent]
 })

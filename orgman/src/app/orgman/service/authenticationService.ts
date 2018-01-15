@@ -12,8 +12,8 @@ export class AuthenticationService {
         private cookieService: CookieService) {}  
 
     isLoggedIn() : boolean{
-        var cookie = this.cookieService.getCookie('OrgMan_SessionUid');
-    
+        var cookie = this.cookieService.getCookie("OrgMan_SessionUid");
+        
         if(cookie){
             return true;
         }
@@ -26,7 +26,7 @@ export class AuthenticationService {
 
         requestHeaders.append('Content-Type', 'application/json');
 
-        let url = 'http://localhost:51738/authentication/login';
+        let url = 'http://www.orgman.ch:81/api/authentication/login';
 
         var obj = {
             "Username" : username,
@@ -36,19 +36,16 @@ export class AuthenticationService {
         let body = JSON.stringify(obj);
 
         let promise = new Promise((resolve, reject) => {
-            this.http.put(url, body, {headers: requestHeaders}).subscribe(
-                (response: Response) => {
+            this.http.put(url, body, {headers: requestHeaders}).toPromise().then(
+                (response) => {
+                    console.log(response);
                     this.cookieService.setCookie('OrgMan_SessionUid', response["_body"],1);
                     resolve(response["_body"]);
-                },
-                () => {
+                }
+            ).catch((response) => {
                     console.log('Invalid Login information');
                     reject();
-                },
-                () => { 
-                    
-                }
-            );
+            })
         });
 
         return promise;

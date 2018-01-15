@@ -1,6 +1,7 @@
 import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {TreeNode} from 'primeng/primeng';
 import {BreadcrumbService} from '../../breadcrumb.service';
+import {CalendarService} from '../service/calendarService';
 
 @Component({
     templateUrl: './calendar.component.html',
@@ -24,7 +25,8 @@ export class CalendarComponent implements OnInit {
 
     scheduleHeader: any;
 
-    constructor(private breadcrumbService: BreadcrumbService) {
+    constructor(private breadcrumbService: BreadcrumbService,
+    private calendarService : CalendarService) {
         this.breadcrumbService.setItems([
             { label: 'Calendar' }
         ]);
@@ -32,21 +34,22 @@ export class CalendarComponent implements OnInit {
 
     ngOnInit() {
 
-        this.events = [
-            {
-                'id': 1,
-                'title': 'Meeting1',
-                'start': '2018-01-12T10:30:00',
-                'end': '2018-01-12T12:30:00'
-            },
-            {
-                'id': 2,
-                'title': 'Meeting2',
-                'start': '2018-02-12T10:30:00',
-                'end': '2018-02-12T12:30:00'
-            },
-        ];
+        var response = this.calendarService.get().then((response) => {
+            this.events = []; 
 
+            var object = JSON.parse(response.toString());
+            object.forEach(element => {
+                this.events.push({
+                    'id': element.UID,
+                    'title': element.Title,
+                    'start': element.StartDate,
+                    'end': element.EndDate
+                });
+            });
+        }).catch(() => {
+            console.log(response);
+        });
+        
         this.scheduleHeader = { left: 'prev,next today', center: 'title', right: 'month,agendaWeek,agendaDay'};
     }
 }
