@@ -22,7 +22,6 @@ export class AppMenuComponent implements OnInit {
             {label: 'Dashboard', icon: 'dashboard', routerLink: ['/']},
             {label: 'Addressmanagement', icon: 'format_list_bulleted', routerLink: ['/address']},
             {label: 'Calendar', icon: 'event', routerLink: ['/calendar']},
-            {label: 'Fileshare', icon: 'folder_shared'},
             {label: 'Settings', icon: 'settings_application',
                 items: [
                     {label: 'System-User', icon: 'verified_user'},

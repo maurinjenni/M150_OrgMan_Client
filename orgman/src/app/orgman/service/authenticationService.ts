@@ -7,53 +7,56 @@ import { CookieService } from './cookieService';
 export class AuthenticationService {
 
      constructor(
-        private http: Http, 
-        private router: Router, 
-        private cookieService: CookieService) {}  
+        private http: Http,
+        private router: Router,
+        private cookieService: CookieService) {}
 
-    isLoggedIn() : boolean{
-        var cookie = this.cookieService.getCookie("OrgMan_SessionUid");
-        
-        if(cookie){
+    isLoggedIn(): boolean {
+        const cookie = this.cookieService.getCookie('OrgMan_SessionUid');
+
+        if (cookie) {
             return true;
         }
 
         return false;
     }
 
-    login(username: string, password: string ){
-        let requestHeaders = new Headers();
+    login(username: string, password: string ) {
+        const requestHeaders = new Headers();
 
         requestHeaders.append('Content-Type', 'application/json');
 
-        let url = 'http://www.orgman.ch:81/api/authentication/login';
+        const url = 'http://localhost:51738/authentication/login';
 
-        var obj = {
-            "Username" : username,
-            "Password" : password
+        const obj = {
+            'Username' : username,
+            'Password' : password
         };
 
-        let body = JSON.stringify(obj);
+        const body = JSON.stringify(obj);
 
-        let promise = new Promise((resolve, reject) => {
-            this.http.put(url, body, {headers: requestHeaders}).toPromise().then(
-                (response) => {
-                    console.log(response);
-                    this.cookieService.setCookie('OrgMan_SessionUid', response["_body"],1);
-                    resolve(response["_body"]);
-                }
-            ).catch((response) => {
+        const promise = new Promise((resolve, reject) => {
+            this.http.put(url, body, {headers: requestHeaders}).subscribe(
+                (response: Response) => {
+                    this.cookieService.setCookie('OrgMan_SessionUid', response['_body'], 1);
+                    resolve(response['_body']);
+                },
+                () => {
                     console.log('Invalid Login information');
                     reject();
-            })
+                },
+                () => {
+
+                }
+            );
         });
 
         return promise;
 
 
-    } 
-    
-    logout(){
+    }
+
+    logout() {
         this.cookieService.deleteCookie('OrgMan_SessionUid');
     }
 }

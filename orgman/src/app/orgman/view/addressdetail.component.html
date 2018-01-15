@@ -2,24 +2,78 @@
     <div class="ui-g-12 ui-lg-6">
         <!-- Left Side -->
         <div class="card card-w-title">
-            <h1>TextBox</h1>
+            <h1>Mandatory</h1>
             <div class="ui-g form-group">
-                <div class="ui-g-12 ui-md-4">
-                    <span class="md-inputfield md-inputfield-box">
+                <div class="ui-g-12">
+                    <p-dropdown [options]="mandatories" optionLabel="titel" [autoWidth]="false" placeholder="Select mandatory..."></p-dropdown>
+                </div>
+            </div> 
+            <h1>Person</h1>
+            <div class="ui-g form-group">
+                <div class="ui-g-12 ui-md-6">
+                    <span class="md-inputfield">
                         <input type="text" pInputText>
-                        <label>Name</label>
+                        <label>Firstname</label>
+                    </span>
+                </div>
+                <div class="ui-g-12 ui-md-6">
+                    <span class="md-inputfield">
+                        <input type="text" pInputText>
+                        <label>Lastname</label>
+                    </span>
+                </div>
+                <div class="ui-g-12">
+                    <span class="md-inputfield">
+                        <input type="text" pInputText>
+                        <label>Company</label>
+                    </span>
+                </div>
+                <div class="ui-g-12 ui-md-8">
+                    <span class="md-inputfield">
+                        <input type="text" pInputText>
+                        <label>Street</label>
                     </span>
                 </div>
                 <div class="ui-g-12 ui-md-4">
-                    <span class="md-inputfield md-inputfield-box">
+                    <span class="md-inputfield">
                         <input type="text" pInputText>
-                        <label>Email</label>
+                        <label>Housenumber</label>
+                    </span>
+                </div>
+                <div class="ui-g-12">
+                    <span class="md-inputfield">
+                        <input type="text" pInputText>
+                        <label>Additional</label>
                     </span>
                 </div>
                 <div class="ui-g-12 ui-md-4">
-                    <span class="md-inputfield md-inputfield-box">
+                    <span class="md-inputfield">
                         <input type="text" pInputText>
-                        <label>Phone</label>
+                        <label>Postcode</label>
+                    </span>
+                </div>
+                <div class="ui-g-12 ui-md-8">
+                    <span class="md-inputfield">
+                        <input type="text" pInputText>
+                        <label>City</label>
+                    </span>
+                </div>
+                <div class="ui-g-12">
+                    <span class="md-inputfield">
+                        <p-autoComplete [(ngModel)]="country" [suggestions]="filteredCountries" (completeMethod)="filterCountry($event)" field="name" [size]="30"
+                         [dropdown]="true" [forceSelection]="true"></p-autoComplete>
+                         <label>Country</label>
+                    </span>
+                </div>
+                <div class="ui-g-12">
+                    <span class="md-inputfield">
+                        <p-calendar></p-calendar>
+                        <label>Birthdate</label>
+                    </span>
+                </div>
+                <div class="ui-g-12">
+                    <span class="md-inputfield">
+                        <textarea pInputTextarea placeholder="Comment"></textarea>
                     </span>
                 </div>
             </div>            
@@ -31,23 +85,17 @@
         <div class="card card-w-title">
             <h1>TextBox</h1>
             <div class="ui-g form-group">
-                <div class="ui-g-12 ui-md-4">
-                    <span class="md-inputfield md-inputfield-box">
+                <div class="ui-g-12 ui-md-6">
+                    <span class="md-inputfield">
                         <input type="text" pInputText>
-                        <label>Name</label>
+                        <label>Firstname</label>
                     </span>
-                </div>
-                <div class="ui-g-12 ui-md-4">
-                    <span class="md-inputfield md-inputfield-box">
+                 </div>
+                 <div class="ui-g-12 ui-md-6">
+                    <span class="md-inputfield">
                         <input type="text" pInputText>
-                        <label>Email</label>
-                    </span>
-                </div>
-                <div class="ui-g-12 ui-md-4">
-                    <span class="md-inputfield md-inputfield-box">
-                        <input type="text" pInputText>
-                        <label>Phone</label>
-                    </span>
+                        <label>Lastname</label>
+                     </span>
                 </div>
             </div>            
         </div>

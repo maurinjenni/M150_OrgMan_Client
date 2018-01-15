@@ -3,31 +3,43 @@
         <div class="card card-w-title">
             <div class="ui-g">
                 <div class="ui-g-12 ui-lg-6">
-                    <div class="ui-inputgroup">
-                        <span class="md-inputfield">
-                            <input id="searchtext" type="text" pInputText required/>
-                            <label for="searchtext">Fulltext-Search...</label>
-                        </span>
-                        <button pButton type="button" icon="ui-icon-search"></button> 
-                    </div>
+                    <button type="button" label="reload address data" icon="ui-icon-refresh" pButton (click)="loadAllAddressData()"></button>
+                </div>
+                <div class="ui-g-12 ui-lg-6">
+                        <button type="button" label="create new address" icon="ui-icon-create" pButton></button>
                 </div>
             </div>
-            
+        </div>
+    </div>
+    <div class="ui-g-12 ui-fluid">
+        <div class="card card-w-title">
+            <div class="ui-g">
+                <div class="ui-g-12 ui-lg-6">
+                    <span class="md-inputfield">
+                        <input #gb id="searchtext" type="text" [(ngModel)]="globalsearchtext" pInputText/>
+                        <label for="searchtext">Global-Search...</label>
+                    </span>
+                </div>
+                <div class="ui-g-12 ui-lg-6">
+                    <button type="button" label="reset all filters" icon="ui-icon-undo" (click)="resetDatatable(dt)" pButton></button>
+                </div>
+            </div>
         </div>
     </div>
     <div class="ui-g-12">
         <div class="card card-w-title">
             <h1>Searchresults</h1>
-            <p-dataTable [value]="searchResult" selectionMode="single" [(selection)]="selectedAddress" 
-                datKey="Id" [paginator]="true" [rows]="10" [responsive]="true" (onRowDblclick)="handleRowDblclick($event)">
+            <p-dataTable #dt [value]="searchResult" selectionMode="single" [(selection)]="selectedAddress" 
+                datKey="Id" [paginator]="true" [rows]="10" [responsive]="true" (onRowDblclick)="handleRowDblclick($event)"
+                [globalFilter]="gb" [loading]="loading">
                 <p-header>Address</p-header>
-                <p-column field="Firstname" header="Firstname" [sortable]="true"></p-column>
-                <p-column field="Lastname" header="Lastname" [sortable]="true"></p-column>
-                <p-column field="Street" header="Street" [sortable]="true"></p-column>
-                <p-column field="HouseNumber" header="House-Number" [sortable]="true"></p-column>
-                <p-column field="Postcode" header="Postcode" [sortable]="true"></p-column>
-                <p-column field="City" header="City" [sortable]="true"></p-column>
-                <p-column field="IsMember" header="Is Member" [sortable]="true"></p-column>
+                <p-column field="Firstname" header="Firstname" [sortable]="true" [filter]="true" filterMatchMode="contains"></p-column>
+                <p-column field="Lastname" header="Lastname" [sortable]="true" [filter]="true" filterMatchMode="contains"></p-column>
+                <p-column field="Street" header="Street" [sortable]="true" [filter]="true" filterMatchMode="contains"></p-column>
+                <p-column field="HouseNumber" header="House-Number" [sortable]="true" [filter]="true" filterMatchMode="contains"></p-column>
+                <p-column field="Postcode" header="Postcode" [sortable]="true" [filter]="true" filterMatchMode="contains"></p-column>
+                <p-column field="City" header="City" [sortable]="true" [filter]="true" filterMatchMode="contains"></p-column>
+                <p-column field="IsMember" header="Is Member" [sortable]="true" [filter]="true" filterMatchMode="contains"></p-column>
             </p-dataTable>
         </div>
     </div>
