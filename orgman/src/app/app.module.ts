@@ -91,7 +91,8 @@ import {BreadcrumbService} from './breadcrumb.service';
 import {AuthenticationService} from './orgman/service/authenticationService';
 import {CookieService} from './orgman/service/cookieService';
 import {LoginRouteGuard} from './orgman/service/loginRouteGuard';
-
+import {CalendarService} from './orgman/service/calendarService';
+import {AddressService}from './orgman/service/addressService';
 
 @NgModule({
     imports: [
@@ -186,6 +187,8 @@ import {LoginRouteGuard} from './orgman/service/loginRouteGuard';
         BreadcrumbService,
         AuthenticationService,
         CookieService,
+        CalendarService,
+        AddressService,
         LoginRouteGuard,
         Location
     ],

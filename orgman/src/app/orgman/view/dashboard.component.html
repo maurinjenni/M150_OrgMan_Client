@@ -4,12 +4,12 @@
             <div class="ui-g">
                 <div class="ui-g-12">
                     <span class="md-inputfield">
-                        <input id="searchtext" type="text" pInputText required/>
+                        <input id="searchtext" type="text" [(ngModel)]="searchText" pInputText required/>
                         <label for="searchtext">Search for Firstname or Lastname</label>
                     </span>
                 </div>
             </div>
-            <button type="button" label="Search" icon="ui-icon-send" pButton></button>
+            <button type="button" label="Search" icon="ui-icon-send" pButton (click)="searchAdress()"></button>
             <p-dataTable [value]="searchResult" [rows]="5" [paginator]="false" [pageLinks]="0" [responsive]="true">
                 <p-header>{{searchResult.length}} Results</p-header>
                 <p-column field="firstname" header="Firstname"></p-column>

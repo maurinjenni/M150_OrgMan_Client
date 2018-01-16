@@ -4,13 +4,13 @@ import { Router } from '@angular/router';
 import { CookieService } from './cookieService';
 
 @Injectable()
-export class CalendarService {
+export class AddressService {
 
      constructor(
         private http: Http,
         private cookieService : CookieService) {}  
 
-    get(){
+    getBySearchText(searchtext : string){
         let requestHeaders = new Headers();
 
         requestHeaders.append('OrgMan_SessionUid', this.cookieService.getCookie('OrgMan_SessionUid'));
@@ -18,7 +18,26 @@ export class CalendarService {
         var requestOptions = new RequestOptions({headers: requestHeaders})
         
         let promise = new Promise((resolve, reject) => {
-            this.http.get("http://www.orgman.ch:81/api/meeting", requestOptions).toPromise()
+            this.http.get("http://www.orgman.ch:81/api/adress?searchString="+searchtext, requestOptions).toPromise()
+            .then((response) => {
+                resolve(response["_body"]);
+            }).catch((response) => {
+                reject(response["_body"]);
+            });
+        });
+
+        return promise;
+    }
+    
+    getByUid(uid){
+        let requestHeaders = new Headers();
+        
+        requestHeaders.append('OrgMan_SessionUid', this.cookieService.getCookie('OrgMan_SessionUid'));
+
+        var requestOptions = new RequestOptions({headers: requestHeaders})
+        
+        let promise = new Promise((resolve, reject) => {
+            this.http.get("http://www.orgman.ch:81/api/" + uid, requestOptions).toPromise()
             .then((response) => {
                 resolve(response["_body"]);
             }).catch((response) => {
@@ -29,18 +48,6 @@ export class CalendarService {
         return promise;
     }
 
-    // getByUid(uid){
-    //     let promise = new Promise((resolve, reject) => {
-    //         this.http.get("").toPromise()
-    //         .then((response) => {
-    //             resolve(response);
-    //         }).catch((response) => {
-    //             reject(response);
-    //         });
-    //     });
-
-    //     return promise;
-    // }
 
     put(){
 
