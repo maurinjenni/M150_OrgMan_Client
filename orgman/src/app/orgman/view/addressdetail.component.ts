@@ -1,20 +1,25 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import {SelectItem, MenuItem} from 'primeng/primeng';
+import { SelectItem, MenuItem, ButtonModule, ConfirmDialogModule, ConfirmationService } from 'primeng/primeng';
 import {BreadcrumbService} from '../../breadcrumb.service';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
+import { Console } from '@angular/core/src/console';
 
 @Component({
     templateUrl: './addressdetail.component.html',
-    styles: [
-        `.fullwidth {
-            width: 100%;
-        }
-        `
-    ]
+    styles: [ `
+      fieldset{
+          border-style: none;
+          padding: 0;
+          margin: 0;
+      }
+    `],
+    providers: [ConfirmationService]
 })
 export class AddressDetailComponent implements OnInit, OnDestroy {
 
     currentAddressId: any;
+
+    currentAddress: any;
 
     private sub: any;
 
@@ -24,12 +29,24 @@ export class AddressDetailComponent implements OnInit, OnDestroy {
 
     mandatories: any[];
 
-    constructor(private breadcrumbService: BreadcrumbService, private route: ActivatedRoute) {
-    }
+    editMode = false;
+
+    createNewAddressMode = false;
+
+    constructor(private breadcrumbService: BreadcrumbService, private route: ActivatedRoute,
+        private confirmationService: ConfirmationService, private router: Router) {}
 
     ngOnInit() {
         this.sub = this.route.params.subscribe(params => {
-            this.currentAddressId = params['param'];
+            const param = params['param'];
+            if (param === 'new') {
+                this.createNewAddressMode = true;
+                this.editMode = true;
+            } else {
+                this.currentAddressId = param;
+                this.editMode = false;
+                this.loadAddress();
+            }
         });
 
         this.breadcrumbService.setItems([
@@ -95,5 +112,55 @@ export class AddressDetailComponent implements OnInit, OnDestroy {
             }
         }
         return filtered;
+    }
+
+    loadAddress() {
+        this.currentAddress = {
+            firstname: 'TestFirstname',
+            lastname: 'TestLastname'
+        };
+    }
+
+    // confirmdialogs: new address
+    confirmDiscardAndReturn() {
+        this.confirmationService.confirm({
+            message: 'Discard your changes and return to the addresslist?',
+            accept: ()  => {
+                this.router.navigate(['/address']);
+            }
+        });
+    }
+
+    confirmSaveNewAddress() {
+        this.confirmationService.confirm({
+            message: 'Save new address?',
+            accept: ()  => {
+                this.router.navigate(['/address']);
+            }
+        });
+    }
+
+    // confirmdialogs: existing address
+    changeToEditMode() {
+        this.editMode = true;
+    }
+
+    confirmDiscardChanges() {
+        this.confirmationService.confirm({
+            message: 'Discard your current changes?',
+            accept: ()  => {
+                this.editMode = false;
+                this.loadAddress();
+            }
+        });
+    }
+
+    confirmSaveChanges() {
+        this.confirmationService.confirm({
+            message: 'Save your changes?',
+            accept: ()  => {
+                console.log('test');
+            }
+        });
     }
 }

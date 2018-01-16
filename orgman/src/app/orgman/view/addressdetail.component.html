@@ -1,104 +1,133 @@
 <div class="ui-g ui-fluid">
-    <div class="ui-g-12 ui-lg-6">
-        <!-- Left Side -->
-        <div class="card card-w-title">
-            <h1>Mandatory</h1>
-            <div class="ui-g form-group">
-                <div class="ui-g-12">
-                    <p-dropdown [options]="mandatories" optionLabel="titel" [autoWidth]="false" placeholder="Select mandatory..."></p-dropdown>
+    <p-confirmDialog header="Confirmation" width="425"></p-confirmDialog>
+    <div *ngIf="!createNewAddressMode" class="ui-g-12">
+        <div class="card">
+            <div class="ui-g">
+                <div class="ui-g-12 ui-lg-4">
+                    <button type="button" label="edit address" icon="ui-icon-edit" pButton [disabled]="editMode" (click)="changeToEditMode()"></button>
                 </div>
-            </div> 
-            <h1>Person</h1>
-            <div class="ui-g form-group">
-                <div class="ui-g-12 ui-md-6">
-                    <span class="md-inputfield">
-                        <input type="text" pInputText>
-                        <label>Firstname</label>
-                    </span>
+                <div class="ui-g-12 ui-lg-4">
+                    <button type="button" label="discard changes" icon="ui-icon-undo" pButton [disabled]="!editMode" (click)="confirmDiscardChanges()"></button>
                 </div>
-                <div class="ui-g-12 ui-md-6">
-                    <span class="md-inputfield">
-                        <input type="text" pInputText>
-                        <label>Lastname</label>
-                    </span>
+                <div class="ui-g-12 ui-lg-4">
+                    <button type="button" label="save changes" icon="ui-icon-check" pButton [disabled]="!editMode" (click)="confirmSaveChanges()"></button>
                 </div>
-                <div class="ui-g-12">
-                    <span class="md-inputfield">
-                        <input type="text" pInputText>
-                        <label>Company</label>
-                    </span>
-                </div>
-                <div class="ui-g-12 ui-md-8">
-                    <span class="md-inputfield">
-                        <input type="text" pInputText>
-                        <label>Street</label>
-                    </span>
-                </div>
-                <div class="ui-g-12 ui-md-4">
-                    <span class="md-inputfield">
-                        <input type="text" pInputText>
-                        <label>Housenumber</label>
-                    </span>
-                </div>
-                <div class="ui-g-12">
-                    <span class="md-inputfield">
-                        <input type="text" pInputText>
-                        <label>Additional</label>
-                    </span>
-                </div>
-                <div class="ui-g-12 ui-md-4">
-                    <span class="md-inputfield">
-                        <input type="text" pInputText>
-                        <label>Postcode</label>
-                    </span>
-                </div>
-                <div class="ui-g-12 ui-md-8">
-                    <span class="md-inputfield">
-                        <input type="text" pInputText>
-                        <label>City</label>
-                    </span>
-                </div>
-                <div class="ui-g-12">
-                    <span class="md-inputfield">
-                        <p-autoComplete [(ngModel)]="country" [suggestions]="filteredCountries" (completeMethod)="filterCountry($event)" field="name" [size]="30"
-                         [dropdown]="true" [forceSelection]="true"></p-autoComplete>
-                         <label>Country</label>
-                    </span>
-                </div>
-                <div class="ui-g-12">
-                    <span class="md-inputfield">
-                        <p-calendar></p-calendar>
-                        <label>Birthdate</label>
-                    </span>
-                </div>
-                <div class="ui-g-12">
-                    <span class="md-inputfield">
-                        <textarea pInputTextarea placeholder="Comment"></textarea>
-                    </span>
-                </div>
-            </div>            
+            </div>
         </div>
     </div>
-        
-    <div class="ui-g-12 ui-lg-6">
-        <!-- Right Side -->
-        <div class="card card-w-title">
-            <h1>TextBox</h1>
-            <div class="ui-g form-group">
-                <div class="ui-g-12 ui-md-6">
-                    <span class="md-inputfield">
-                        <input type="text" pInputText>
-                        <label>Firstname</label>
-                    </span>
-                 </div>
-                 <div class="ui-g-12 ui-md-6">
-                    <span class="md-inputfield">
-                        <input type="text" pInputText>
-                        <label>Lastname</label>
-                     </span>
+    <div *ngIf="createNewAddressMode" class="ui-g-12">
+        <div class="card">
+            <div class="ui-g">
+                <div class="ui-g-12 ui-lg-6">
+                    <button type="button" label="discard changes and return" icon="ui-icon-arrow-back" pButton (click)="confirmDiscardAndReturn()"></button>
                 </div>
-            </div>            
+                <div class="ui-g-12 ui-lg-6">   
+                    <button type="button" label="save address" icon="ui-icon-check" pButton (click)="confirmSaveNewAddress()"></button>
+                </div>
+            </div>
         </div>
-    </div>               
-  
+    </div>
+    <fieldset [disabled]="!editMode">
+        <div class="ui-g-12 ui-lg-6">
+            <!-- Left Side -->
+            <div class="card">
+                <h1>Mandatory</h1>
+                <div class="ui-g form-group">
+                    <div class="ui-g-12">
+                        <p-dropdown [options]="mandatories" optionLabel="titel" [autoWidth]="false" placeholder="Select mandatory..." [disabled]="!editMode"></p-dropdown>
+                    </div>
+                </div> 
+                <h1>Person</h1>
+                <div class="ui-g form-group">
+                    <div class="ui-g-12 ui-md-6">
+                        <span class="md-inputfield">
+                            <input type="text" [(ngModel)]="currentAddress.firstname" pInputText>
+                            <label>Firstname</label>
+                        </span>
+                    </div>
+                    <div class="ui-g-12 ui-md-6">
+                        <span class="md-inputfield">
+                            <input type="text" [(ngModel)]="currentAddress.lastname" pInputText>
+                            <label>Lastname</label>
+                        </span>
+                    </div>
+                    <div class="ui-g-12">
+                        <span class="md-inputfield">
+                            <input type="text" pInputText>
+                            <label>Company</label>
+                        </span>
+                    </div>
+                    <div class="ui-g-12 ui-md-8">
+                        <span class="md-inputfield">
+                            <input type="text" pInputText>
+                            <label>Street</label>
+                        </span>
+                    </div>
+                    <div class="ui-g-12 ui-md-4">
+                        <span class="md-inputfield">
+                            <input type="text" pInputText>
+                            <label>Housenumber</label>
+                        </span>
+                    </div>
+                    <div class="ui-g-12">
+                        <span class="md-inputfield">
+                            <input type="text" pInputText>
+                            <label>Additional</label>
+                        </span>
+                    </div>
+                    <div class="ui-g-12 ui-md-4">
+                        <span class="md-inputfield">
+                            <input type="text" pInputText>
+                            <label>Postcode</label>
+                        </span>
+                    </div>
+                    <div class="ui-g-12 ui-md-8">
+                        <span class="md-inputfield">
+                            <input type="text" pInputText>
+                            <label>City</label>
+                        </span>
+                    </div>
+                    <div class="ui-g-12">
+                        <span class="md-inputfield">
+                            <p-autoComplete [(ngModel)]="country" [suggestions]="filteredCountries" (completeMethod)="filterCountry($event)" field="name" [size]="30"
+                             [dropdown]="true" [forceSelection]="true"></p-autoComplete>
+                             <label>Country</label>
+                        </span>
+                    </div>
+                    <div class="ui-g-12">
+                        <span class="md-inputfield">
+                            <p-calendar></p-calendar>
+                            <label>Birthdate</label>
+                        </span>
+                    </div>
+                    <div class="ui-g-12">
+                        <span class="md-inputfield">
+                            <textarea pInputTextarea placeholder="Comment"></textarea>
+                        </span>
+                    </div>
+                </div>            
+            </div>
+        </div>
+            
+        <div class="ui-g-12 ui-lg-6">
+            <!-- Right Side -->
+            <div class="card">
+                <h1>TextBox</h1>
+                <div class="ui-g form-group">
+                    <div class="ui-g-12 ui-md-6">
+                        <span class="md-inputfield">
+                            <input type="text" pInputText>
+                            <label>Firstname</label>
+                        </span>
+                     </div>
+                     <div class="ui-g-12 ui-md-6">
+                        <span class="md-inputfield">
+                            <input type="text" pInputText>
+                            <label>Lastname</label>
+                         </span>
+                    </div>
+                </div>            
+            </div>
+        </div>
+    </fieldset>
 </div>

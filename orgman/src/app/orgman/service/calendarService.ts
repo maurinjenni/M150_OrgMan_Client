@@ -8,21 +8,21 @@ export class CalendarService {
 
      constructor(
         private http: Http,
-        private cookieService : CookieService) {}  
+        private cookieService: CookieService) {}
 
-    get(){
-        let requestHeaders = new Headers();
+    get() {
+        const requestHeaders = new Headers();
 
         requestHeaders.append('OrgMan_SessionUid', this.cookieService.getCookie('OrgMan_SessionUid'));
 
-        var requestOptions = new RequestOptions({headers: requestHeaders})
-        
-        let promise = new Promise((resolve, reject) => {
-            this.http.get("http://www.orgman.ch:81/api/meeting", requestOptions).toPromise()
+        const requestOptions = new RequestOptions({headers: requestHeaders});
+
+        const promise = new Promise((resolve, reject) => {
+            this.http.get('http://www.orgman.ch:81/api/meeting', requestOptions).toPromise()
             .then((response) => {
-                resolve(response["_body"]);
+                resolve(response['_body']);
             }).catch((response) => {
-                reject(response["_body"]);
+                reject(response['_body']);
             });
         });
 
@@ -42,15 +42,15 @@ export class CalendarService {
     //     return promise;
     // }
 
-    put(){
+    put() {
 
     }
 
-    post(){
+    post() {
 
     }
 
-    delete(uid){
+    delete(uid) {
 
     }
 }
