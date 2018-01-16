@@ -1,6 +1,6 @@
 <div class="ui-g">
     <div class="ui-g-12 ui-fluid">
-        <div class="card card-w-title">
+        <div class="card">
             <div class="ui-g">
                 <div class="ui-g-12 ui-lg-6">
                     <button type="button" label="reload address data" icon="ui-icon-refresh" pButton (click)="loadAllAddressData()"></button>
@@ -12,7 +12,7 @@
         </div>
     </div>
     <div class="ui-g-12 ui-fluid">
-        <div class="card card-w-title">
+        <div class="card">
             <div class="ui-g">
                 <div class="ui-g-12 ui-lg-6">
                     <span class="md-inputfield">
@@ -27,10 +27,10 @@
         </div>
     </div>
     <div class="ui-g-12">
-        <div class="card card-w-title">
+        <div class="card">
             <h1>Searchresults</h1>
             <p-dataTable #dt [value]="searchResult" selectionMode="single" [(selection)]="selectedAddress" 
-                datKey="Id" [paginator]="true" [rows]="10" [responsive]="true" (onRowDblclick)="handleRowDblclick($event)"
+                dataKey="Id" [paginator]="true" [rows]="10" [responsive]="true" (onRowDblclick)="handleRowDblclick($event)"
                 [globalFilter]="gb" [loading]="loading">
                 <p-header>Address</p-header>
                 <p-column field="Firstname" header="Firstname" [sortable]="true" [filter]="true" filterMatchMode="contains"></p-column>

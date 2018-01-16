@@ -9,11 +9,12 @@
                     </span>
                 </div>
             </div>
-            <button type="button" label="Search" icon="ui-icon-send" pButton></button>
-            <p-dataTable [value]="searchResult" [rows]="5" [paginator]="false" [pageLinks]="0" [responsive]="true">
+            <button type="button" label="Search" icon="ui-icon-send" pButton (click)="loadSearchResults()"></button>
+            <p-dataTable [value]="searchResult" [rows]="5" [paginator]="false" [responsive]="true" [(selection)]="selectedAddress" dataKey="Id"
+                selectionMode="single" [loading]="loading" (onRowDblclick)="handleRowDblclick($event)" *ngIf="searchResult != undefined">
                 <p-header>{{searchResult.length}} Results</p-header>
-                <p-column field="firstname" header="Firstname"></p-column>
-                <p-column field="lastname" header="Lastname"></p-column>
+                <p-column field="Firstname" header="Firstname"></p-column>
+                <p-column field="Lastname" header="Lastname"></p-column>
             </p-dataTable>
         </p-panel>
     </div>

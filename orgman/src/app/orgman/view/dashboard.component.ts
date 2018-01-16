@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {SelectItem} from 'primeng/primeng';
 import {BreadcrumbService} from '../../breadcrumb.service';
+import { Router } from '@angular/router';
 
 @Component({
     templateUrl: './dashboard.component.html',
@@ -24,23 +25,20 @@ import {BreadcrumbService} from '../../breadcrumb.service';
 })
 export class DashboardComponent implements OnInit {
 
-    searchResult: any;
+    searchResult: any[];
 
     events: any;
 
-    constructor(private breadcrumbService: BreadcrumbService) {
+    selectedAddress: any;
+
+    loading: boolean;
+
+    constructor(private breadcrumbService: BreadcrumbService, private router: Router) {
       this.breadcrumbService.setItems([
         {label: ''},
       ]); }
 
     ngOnInit() {
-        this.searchResult = [
-            {'firstname': 'test', 'lastname': 'test'},
-            {'firstname': 'test', 'lastname': 'test'},
-            {'firstname': 'test', 'lastname': 'test'},
-            {'firstname': 'test', 'lastname': 'test'},
-            {'firstname': 'test', 'lastname': 'test'}
-        ];
 
         this.events = [
           '12.12.12: Test',
@@ -54,6 +52,30 @@ export class DashboardComponent implements OnInit {
           '12.12.12: Test',
           '12.12.12: Test'
         ];
+    }
 
+    loadSearchResults() {
+        this.loading = true;
+        setTimeout(() => {
+            this.searchResult = [
+                {Id: 1, Firstname: 'Test', Lastname: 'Test', Street: 'Test',
+                HouseNumber: 'Test', Postcode: 'Test', City: 'Test', IsMember: 'Test'},
+                {Id: 2, Firstname: 'Test', Lastname: 'Test', Street: 'Test',
+                HouseNumber: 'Test', Postcode: 'Test', City: 'Test', IsMember: 'Test'},
+                {Id: 3, Firstname: 'Hallo', Lastname: 'Test', Street: 'Test',
+                HouseNumber: 'Test', Postcode: 'Test', City: 'Test', IsMember: 'Test'},
+                {Id: 4, Firstname: 'Test', Lastname: 'Test', Street: 'Hallo',
+                HouseNumber: 'Test', Postcode: 'Test', City: 'Test', IsMember: 'Test'},
+                {Id: 5, Firstname: 'Test', Lastname: 'Test', Street: 'Test',
+                HouseNumber: 'Test', Postcode: 'Test', City: 'Test', IsMember: 'Test'},
+                {Id: 6, Firstname: 'Test', Lastname: 'Test', Street: 'Test',
+                HouseNumber: 'Test', Postcode: 'Test', City: 'Test', IsMember: 'Test'}
+            ];
+            this.loading = false;
+        }, 1000);
+    }
+
+    handleRowDblclick(event) {
+        this.router.navigate(['/address', event.data.Id]);
     }
 }
