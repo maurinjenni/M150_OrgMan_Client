@@ -26,7 +26,7 @@ export class CalendarComponent implements OnInit {
     scheduleHeader: any;
 
     constructor(private breadcrumbService: BreadcrumbService,
-    private calendarService : CalendarService) {
+    private calendarService: CalendarService) {
         this.breadcrumbService.setItems([
             { label: 'Calendar' }
         ]);
@@ -34,10 +34,10 @@ export class CalendarComponent implements OnInit {
 
     ngOnInit() {
 
-        var response = this.calendarService.get().then((response) => {
-            this.events = []; 
+        const response = this.calendarService.get().then((responseData) => {
+            this.events = [];
 
-            var object = JSON.parse(response.toString());
+            const object = JSON.parse(responseData.toString());
             object.forEach(element => {
                 this.events.push({
                     'id': element.UID,
@@ -49,7 +49,7 @@ export class CalendarComponent implements OnInit {
         }).catch(() => {
             console.log(response);
         });
-        
+
         this.scheduleHeader = { left: 'prev,next today', center: 'title', right: 'month,agendaWeek,agendaDay'};
     }
 }
