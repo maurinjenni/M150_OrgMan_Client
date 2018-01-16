@@ -56,4 +56,8 @@ export class AddressComponent implements OnInit {
             this.loading = false;
         }, 1000);
     }
+
+    navigateToNewAddress() {
+        this.router.navigate(['/address', 'new']);
+    }
 }
