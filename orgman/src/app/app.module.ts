@@ -85,6 +85,7 @@ import {AddressComponent} from './orgman/view/address.component';
 import {AddressDetailComponent} from './orgman/view/addressdetail.component';
 import {LoginComponent} from './orgman/view/login.component';
 import {CalendarComponent} from './orgman/view/calendar.component';
+import {MembershipComponent} from './orgman/view/membership.component';
 
 import {BreadcrumbService} from './breadcrumb.service';
 
@@ -180,7 +181,8 @@ import {AddressService}from './orgman/service/addressService';
         AddressComponent,
         AddressDetailComponent,
         LoginComponent,
-        CalendarComponent
+        CalendarComponent,
+        MembershipComponent
     ],
     providers: [
         {provide: LocationStrategy, useClass: HashLocationStrategy},

@@ -24,10 +24,7 @@ export class AppMenuComponent implements OnInit {
             {label: 'Calendar', icon: 'event', routerLink: ['/calendar']},
             {label: 'Settings', icon: 'settings_application',
                 items: [
-                    {label: 'System-User', icon: 'verified_user'},
-                    {label: 'Salutation', icon: 'pan_tool'},
-                    {label: 'Membership', icon: 'group'},
-                    {label: 'Communication-Type', icon: 'email'}
+                    {label: 'Membership', icon: 'group', routerLink: ['/membership']},
                 ]
             }
         ];
