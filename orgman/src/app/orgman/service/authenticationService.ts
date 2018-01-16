@@ -26,7 +26,7 @@ export class AuthenticationService {
 
         requestHeaders.append('Content-Type', 'application/json');
 
-        const url = 'http://localhost:51738/authentication/login';
+        const url = 'http://www.orgman.ch:81/api/authentication/login';
 
         const obj = {
             'Username' : username,
