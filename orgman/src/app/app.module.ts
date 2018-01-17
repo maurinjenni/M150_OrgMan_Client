@@ -86,6 +86,7 @@ import {AddressDetailComponent} from './orgman/view/addressdetail.component';
 import {LoginComponent} from './orgman/view/login.component';
 import {CalendarComponent} from './orgman/view/calendar.component';
 import {MembershipComponent} from './orgman/view/membership.component';
+import {MembershipDetailComponent} from './orgman/view/membershipdetail.component';
 import {CalendarDetailComponent} from './orgman/view/calendardetail.component';
 
 import {BreadcrumbService} from './breadcrumb.service';
@@ -94,7 +95,8 @@ import {AuthenticationService} from './orgman/service/authenticationService';
 import {CookieService} from './orgman/service/cookieService';
 import {LoginRouteGuard} from './orgman/service/loginRouteGuard';
 import {CalendarService} from './orgman/service/calendarService';
-import {AddressService}from './orgman/service/addressService';
+import {AddressService} from './orgman/service/addressService';
+import {MembershipService} from './orgman/service/membershipService';
 
 @NgModule({
     imports: [
@@ -184,6 +186,7 @@ import {AddressService}from './orgman/service/addressService';
         LoginComponent,
         CalendarComponent,
         MembershipComponent,
+        MembershipDetailComponent,
         CalendarDetailComponent
     ],
     providers: [
@@ -193,6 +196,7 @@ import {AddressService}from './orgman/service/addressService';
         CookieService,
         CalendarService,
         AddressService,
+        MembershipService,
         LoginRouteGuard,
         Location
         ],

@@ -1,0 +1,55 @@
+<div class="ui-g ui-fluid">
+    <p-confirmDialog header="Confirmation" width="425"></p-confirmDialog>
+    
+    <div *ngIf="!createNewMembershipMode" class="ui-g-12">
+        <div class="card">
+            <div class="ui-g">
+                <div class="ui-g-12 ui-lg-3">
+                    <button type="button" label="edit membership" icon="ui-icon-edit" pButton [disabled]="editMode" (click)="changeToEditMode()"></button>
+                </div>
+                <div class="ui-g-12 ui-lg-3">
+                    <button type="button" label="discard changes" icon="ui-icon-undo" pButton [disabled]="!editMode" (click)="confirmDiscardChanges()"></button>
+                </div>
+                <div class="ui-g-12 ui-lg-3">
+                    <button type="button" label="save changes" icon="ui-icon-check" pButton [disabled]="!editMode" (click)="confirmSaveChanges()"></button>
+                </div>
+                <div class="ui-g-12 ui-lg-3">
+                    <button type="button" label="delete membership" icon="ui-icon-delete" pButton [disabled]="createNewMembershipMode" (click)="confirmDelete()"></button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="createNewMembershipMode" class="ui-g-12">
+        <div class="card">
+            <div class="ui-g">
+                <div class="ui-g-12">
+                    <button type="button" label="discard changes and return" icon="ui-icon-arrow-back" pButton (click)="confirmDiscardAndReturn()"></button>
+                </div>
+                <div class="ui-g-12">   
+                    <button type="button" label="save membership" icon="ui-icon-check" pButton (click)="confirmSaveNewMembership()"></button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <fieldset [disabled]="!editMode" class="ui-g-12">
+        <div class="ui-g-12">
+            <div class="card">
+                <div class="ui-g form-group">
+                    <div class="ui-g-12">
+                        <span class="md-inputfield">
+                            <input type="text" [(ngModel)]="membershipDetail.Code" pInputText>
+                            <label>Code</label>
+                        </span>
+                    </div>
+    
+                    <div class="ui-g-12">
+                        <span class="md-inputfield">
+                            <input type="text" [(ngModel)]="membershipDetail.Title" pInputText>
+                            <label>Title</label>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </fieldset>
+</div>

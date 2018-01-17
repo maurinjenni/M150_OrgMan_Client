@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {TreeNode, DataTable} from 'primeng/primeng';
 import {BreadcrumbService} from '../../breadcrumb.service';
@@ -14,11 +15,7 @@ export class MembershipComponent implements OnInit {
 
     loading: boolean;
 
-    displayDialog = false;
-
-    dialogTitle = 'Test';
-
-    constructor(private breadcrumbService: BreadcrumbService) {
+    constructor(private breadcrumbService: BreadcrumbService, private router: Router) {
         this.breadcrumbService.setItems([
             { label: 'Settings'},
             { label: 'Membership'}
@@ -43,12 +40,10 @@ export class MembershipComponent implements OnInit {
     }
 
     handleRowDblclick(event) {
-        console.log('test');
+        this.router.navigate(['/membership', event.data.Id]);
     }
 
     createNewMembership() {
-        this.dialogTitle = 'New membership';
-        this.displayDialog = true;
+        this.router.navigate(['/membership', 'new']);
     }
-
 }
