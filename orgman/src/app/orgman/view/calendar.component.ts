@@ -1,7 +1,9 @@
 import {Component, OnInit, ViewEncapsulation} from '@angular/core';
-import {TreeNode} from 'primeng/primeng';
+import {TreeNode, SelectItem, MenuItem, ButtonModule, ConfirmationService, ConfirmDialogModule} from 'primeng/primeng';
 import {BreadcrumbService} from '../../breadcrumb.service';
 import {CalendarService} from '../service/calendarService';
+import {Router} from '@angular/router';
+import { DatePipe } from '@angular/common';
 
 @Component({
     templateUrl: './calendar.component.html',
@@ -17,7 +19,8 @@ import {CalendarService} from '../service/calendarService';
             }
         }
     `],
-    encapsulation: ViewEncapsulation.None
+    encapsulation: ViewEncapsulation.None,
+    providers:[ConfirmationService]
 })
 export class CalendarComponent implements OnInit {
 
@@ -25,17 +28,25 @@ export class CalendarComponent implements OnInit {
 
     scheduleHeader: any;
 
+    displayEventDetail: boolean;
+
+    eventDetail : any;
+
     constructor(private breadcrumbService: BreadcrumbService,
-    private calendarService: CalendarService) {
+    private calendarService: CalendarService,
+    private router: Router,
+    private confirmationService: ConfirmationService) {
         this.breadcrumbService.setItems([
             { label: 'Calendar' }
         ]);
      }
 
     ngOnInit() {
+        this.eventDetail = {};
+        this.events = [];
 
         const response = this.calendarService.get().then((responseData) => {
-            this.events = [];
+            this.displayEventDetail = false;
 
             const object = JSON.parse(responseData.toString());
             object.forEach(element => {
@@ -51,5 +62,10 @@ export class CalendarComponent implements OnInit {
         });
 
         this.scheduleHeader = { left: 'prev,next today', center: 'title', right: 'month,agendaWeek,agendaDay'};
+    }
+
+    handlEventclick(event){
+        console.log(event);
+        this.router.navigate(['/calendar', event.calEvent.id]);
     }
 }

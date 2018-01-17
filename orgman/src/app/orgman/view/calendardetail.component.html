@@ -1,0 +1,75 @@
+<div class="ui-g ui-fluid">
+    <p-confirmDialog header="Confirmation" width="425"></p-confirmDialog>
+    
+    <div *ngIf="!createNewEventMode" class="ui-g-12">
+        <div class="card">
+            <div class="ui-g">
+                <div class="ui-g-12 ui-lg-3">
+                    <button type="button" label="edit event" icon="ui-icon-edit" pButton [disabled]="editMode" (click)="changeToEditMode()"></button>
+                </div>
+                <div class="ui-g-12 ui-lg-3">
+                    <button type="button" label="discard changes" icon="ui-icon-undo" pButton [disabled]="!editMode" (click)="confirmDiscardChanges()"></button>
+                </div>
+                <div class="ui-g-12 ui-lg-3">
+                    <button type="button" label="save changes" icon="ui-icon-check" pButton [disabled]="!editMode" (click)="confirmSaveChanges()"></button>
+                </div>
+                <div class="ui-g-12 ui-lg-3">
+                    <button type="button" label="delete event" icon="ui-icon-delete" pButton [disabled]="createNewEventMode" (click)="confirmDelete()"></button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="createNewEventMode" class="ui-g-12">
+        <div class="card">
+            <div class="ui-g">
+                <div class="ui-g-12">
+                    <button type="button" label="discard changes and return" icon="ui-icon-arrow-back" pButton (click)="confirmDiscardAndReturn()"></button>
+                </div>
+                <div class="ui-g-12">   
+                    <button type="button" label="save event" icon="ui-icon-check" pButton (click)="confirmSaveNewEvents()"></button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <fieldset [disabled]="!editMode" class="ui-g-12">
+        <div class="ui-g-12">
+            <div class="card">
+                <div class="ui-g form-group">
+                    <div class="ui-g-12">
+                        <span class="md-inputfield">
+                            <input type="text" [(ngModel)]="eventDetail.Title" pInputText>
+                            <label>Title</label>
+                        </span>
+                    </div>
+    
+                    <div class="ui-g-12">
+                        <span class="md-inputfield">
+                            <p-calendar [(ngModel)]="eventDetail.StartDate" [inline]="false" [showTime]="true"></p-calendar>
+                            <label>StartDate</label>
+                        </span>
+                    </div>
+    
+                    <div class="ui-g-12">
+                        <span class="md-inputfield">
+                            <p-calendar [(ngModel)]="eventDetail.EndDate" [inline]="false" [showTime]="true"></p-calendar>
+                            <label>EndDate</label>
+                        </span>
+                    </div>
+    
+                    <div class="ui-g-12">
+                        <span class="md-inputfield">
+                            <input type="text" [(ngModel)]="eventDetail.Location" pInputText>
+                            <label>Location</label>
+                        </span>
+                    </div>
+                    
+                    <div class="ui-g-12">
+                        <span class="md-inputfield">
+                            <textarea [rows]="5" [cols]="30" [(ngModel)]="eventDetail.Description" pInputTextarea autoResize="autoResize"></textarea>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </fieldset>
+</div>
