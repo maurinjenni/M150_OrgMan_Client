@@ -23,7 +23,7 @@ export class CalendarDetailComponent implements OnInit, OnDestroy {
 
     private sub: any;
 
-    mandatories: any[];
+    mandatories: SelectItem[];
     
     eventDetail: any;
     
@@ -36,17 +36,28 @@ export class CalendarDetailComponent implements OnInit, OnDestroy {
 
     ngOnInit() {
         this.eventDetail = {};
+        this.mandatories = [
+            {label: 'Mr', value: 'e91019da-26c8-b201-1385-0011f6c365e9'},
+            {label: 'Mandatory2', value: 'M2'},
+            {label: 'Mandatory3', value: 'M3'}
+        ];
 
         this.sub = this.route.params.subscribe(params => {
             const param = params['param'];
             if (param === 'new') {
                 this.createNewEventMode = true;
                 this.editMode = true;
+
+               
             } else {
                 this.currentEventId = param;
                 this.editMode = false;
                 this.loadevent(this.currentEventId);
             }
+        });
+
+        this.route.queryParams.subscribe((params) => {           
+            this.eventDetail.StartDate = params["startdate"];
         });
 
         this.breadcrumbService.setItems([
@@ -58,7 +69,6 @@ export class CalendarDetailComponent implements OnInit, OnDestroy {
     ngOnDestroy() {
         this.sub.unsubscribe();
     }
-
 
     loadevent(uid){
         let datePipe = new DatePipe('en-US');
@@ -84,15 +94,6 @@ export class CalendarDetailComponent implements OnInit, OnDestroy {
         });
     }
 
-    confirmSaveNewEvent() {
-        this.confirmationService.confirm({
-            message: 'Save new event?',
-            accept: ()  => {
-                this.router.navigate(['/calendar']);
-            }
-        });
-    }
-
     changeToEditMode() {
         this.editMode = true;
     }
@@ -112,15 +113,18 @@ export class CalendarDetailComponent implements OnInit, OnDestroy {
             message: 'Save your changes?',
             accept: ()  => {
                 if(this.createNewEventMode){
-
+                    this.calendarService.put(this.eventDetail).then((response) => {
+                        let datePipe = new DatePipe('en-US');
+                        const meetingUid = JSON.parse(response.toString());
+                        this.router.navigate(['/calendar', meetingUid]);
+                    }).catch((response) => {
+                        console.log(response);
+                    });
                 }else {
                     this.calendarService.post(this.eventDetail).then((response) =>{
-                        let datePipe = new DatePipe('en-US');
                         const object = JSON.parse(response.toString());
-                        this.eventDetail = object;
-                        
-                        this.eventDetail.StartDate = new Date(datePipe.transform(this.eventDetail.StartDate, 'MM/dd/yyyy HH:mm'));
-                        this.eventDetail.EndDate = new Date(datePipe.transform(this.eventDetail.EndDate, 'MM/dd/yyyy HH:mm'));
+                        this.editMode = false;
+                        this.router.navigate(['/calendar', object.UID]);
                     }).catch((response) => {
                         console.log(response);
                     });

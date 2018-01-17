@@ -1,7 +1,7 @@
 <div class="ui-g">
     <div class="ui-g-12">
         <div class="card card-w-title">
-            <p-schedule [events]="events" defaultDate="2018-01-12" [header]="scheduleHeader" editable="true" (onEventClick)="handlEventclick($event)"></p-schedule>
+            <p-schedule [events]="events" defaultDate="2018-01-12" [header]="scheduleHeader" editable="false" (onEventClick)="handlEventclick($event)" (onDayClick)="handleDayclick($event)"></p-schedule>
         </div>
     </div>
 </div>
