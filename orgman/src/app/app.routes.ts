@@ -7,6 +7,7 @@ import {CalendarComponent} from './orgman/view/calendar.component';
 import {MembershipComponent} from './orgman/view/membership.component';
 import {LoginComponent} from './orgman/view/login.component';
 import {LoginRouteGuard} from './orgman/service/loginRouteGuard';
+import {CalendarDetailComponent} from './orgman/view/calendardetail.component';
 
 export const routes: Routes = [
     {path: '', component: DashboardComponent},
@@ -14,6 +15,7 @@ export const routes: Routes = [
     {path: 'address', component: AddressComponent},
     {path: 'address/:param', component: AddressDetailComponent},
     {path: 'calendar', component: CalendarComponent, canActivate: [LoginRouteGuard]},
+    {path: 'calendar/:param', component: CalendarDetailComponent, canActivate: [LoginRouteGuard]},
     {path: 'membership', component: MembershipComponent},
 ];
 

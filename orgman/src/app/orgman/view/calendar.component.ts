@@ -19,7 +19,8 @@ import { DatePipe } from '@angular/common';
             }
         }
     `],
-    encapsulation: ViewEncapsulation.None
+    encapsulation: ViewEncapsulation.None,
+    providers:[ConfirmationService]
 })
 export class CalendarComponent implements OnInit {
 

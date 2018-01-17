@@ -86,6 +86,7 @@ import {AddressDetailComponent} from './orgman/view/addressdetail.component';
 import {LoginComponent} from './orgman/view/login.component';
 import {CalendarComponent} from './orgman/view/calendar.component';
 import {MembershipComponent} from './orgman/view/membership.component';
+import {CalendarDetailComponent} from './orgman/view/calendardetail.component';
 
 import {BreadcrumbService} from './breadcrumb.service';
 
@@ -182,7 +183,8 @@ import {AddressService}from './orgman/service/addressService';
         AddressDetailComponent,
         LoginComponent,
         CalendarComponent,
-        MembershipComponent
+        MembershipComponent,
+        CalendarDetailComponent
     ],
     providers: [
         {provide: LocationStrategy, useClass: HashLocationStrategy},
@@ -193,7 +195,7 @@ import {AddressService}from './orgman/service/addressService';
         AddressService,
         LoginRouteGuard,
         Location
-    ],
+        ],
     bootstrap: [AppComponent]
 })
 export class AppModule { }
