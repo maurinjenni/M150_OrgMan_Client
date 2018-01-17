@@ -2,7 +2,7 @@ import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {TreeNode, SelectItem, MenuItem, ButtonModule, ConfirmationService, ConfirmDialogModule} from 'primeng/primeng';
 import {BreadcrumbService} from '../../breadcrumb.service';
 import {CalendarService} from '../service/calendarService';
-import {Router} from '@angular/router';
+import {Router, NavigationExtras} from '@angular/router';
 import { DatePipe } from '@angular/common';
 
 @Component({
@@ -65,7 +65,18 @@ export class CalendarComponent implements OnInit {
     }
 
     handlEventclick(event){
-        console.log(event);
         this.router.navigate(['/calendar', event.calEvent.id]);
+    }
+
+    handleDayclick(event){
+        let datePipe = new DatePipe("en-US");
+
+        let navigationExtras: NavigationExtras = {
+            queryParams: {
+                "startdate": datePipe.transform(event.date._d, 'MM/dd/yyyy HH:mm') 
+            }
+        };
+
+        this.router.navigate(['/calendar', "new"], navigationExtras);
     }
 }

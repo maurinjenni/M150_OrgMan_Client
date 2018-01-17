@@ -8,13 +8,13 @@
                     <button type="button" label="edit event" icon="ui-icon-edit" pButton [disabled]="editMode" (click)="changeToEditMode()"></button>
                 </div>
                 <div class="ui-g-12 ui-lg-3">
+                    <button type="button" label="delete event" icon="ui-icon-delete" pButton [disabled]="createNewEventMode" (click)="confirmDelete()"></button>
+                </div>
+                <div class="ui-g-12 ui-lg-3">
                     <button type="button" label="discard changes" icon="ui-icon-undo" pButton [disabled]="!editMode" (click)="confirmDiscardChanges()"></button>
                 </div>
                 <div class="ui-g-12 ui-lg-3">
                     <button type="button" label="save changes" icon="ui-icon-check" pButton [disabled]="!editMode" (click)="confirmSaveChanges()"></button>
-                </div>
-                <div class="ui-g-12 ui-lg-3">
-                    <button type="button" label="delete event" icon="ui-icon-delete" pButton [disabled]="createNewEventMode" (click)="confirmDelete()"></button>
                 </div>
             </div>
         </div>
@@ -22,11 +22,11 @@
     <div *ngIf="createNewEventMode" class="ui-g-12">
         <div class="card">
             <div class="ui-g">
-                <div class="ui-g-12">
+                <div class="ui-g-6">
                     <button type="button" label="discard changes and return" icon="ui-icon-arrow-back" pButton (click)="confirmDiscardAndReturn()"></button>
                 </div>
-                <div class="ui-g-12">   
-                    <button type="button" label="save event" icon="ui-icon-check" pButton (click)="confirmSaveNewEvents()"></button>
+                <div class="ui-g-6">   
+                    <button type="button" label="save event" icon="ui-icon-check" pButton (click)="confirmSaveChanges()"></button>
                 </div>
             </div>
         </div>
@@ -41,6 +41,17 @@
                             <label>Title</label>
                         </span>
                     </div>
+
+                    <div class="ui-g-12">
+                        <span class="md-inputfield">
+                            <p-dropdown [disabled]="!editMode"  [options]="mandatories" [(ngModel)]="eventDetail.MandatorUID" placeholder="Mandator" [autoWidth]="false"></p-dropdown>
+                        </span>
+                    </div>
+
+                    <div class="ui-g-12">
+                            <span class="md-inputfield">
+                            </span>
+                        </div>
     
                     <div class="ui-g-12">
                         <span class="md-inputfield">
