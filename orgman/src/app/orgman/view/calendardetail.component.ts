@@ -128,4 +128,17 @@ export class CalendarDetailComponent implements OnInit, OnDestroy {
             }
         });
     }
+
+    confirmDelete(){
+        this.confirmationService.confirm({
+            message: 'Delete Event?',
+            accept: ()  => {
+                this.calendarService.delete(this.eventDetail.UID).then((response) =>{
+                    this.router.navigate(['/calendar']);
+                }).catch((response) => {
+                    console.log(response);
+                });
+            }
+        });  
+    }
 }

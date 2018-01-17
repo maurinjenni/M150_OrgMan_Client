@@ -4,14 +4,17 @@
     <div *ngIf="!createNewEventMode" class="ui-g-12">
         <div class="card">
             <div class="ui-g">
-                <div class="ui-g-12 ui-lg-4">
+                <div class="ui-g-12 ui-lg-3">
                     <button type="button" label="edit event" icon="ui-icon-edit" pButton [disabled]="editMode" (click)="changeToEditMode()"></button>
                 </div>
-                <div class="ui-g-12 ui-lg-4">
+                <div class="ui-g-12 ui-lg-3">
                     <button type="button" label="discard changes" icon="ui-icon-undo" pButton [disabled]="!editMode" (click)="confirmDiscardChanges()"></button>
                 </div>
-                <div class="ui-g-12 ui-lg-4">
+                <div class="ui-g-12 ui-lg-3">
                     <button type="button" label="save changes" icon="ui-icon-check" pButton [disabled]="!editMode" (click)="confirmSaveChanges()"></button>
+                </div>
+                <div class="ui-g-12 ui-lg-3">
+                    <button type="button" label="delete event" icon="ui-icon-delete" pButton [disabled]="createNewEventMode" (click)="confirmDelete()"></button>
                 </div>
             </div>
         </div>

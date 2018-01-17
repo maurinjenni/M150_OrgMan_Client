@@ -72,6 +72,21 @@ export class CalendarService {
     }
 
     delete(uid) {
+        const requestHeaders = new Headers();
+        
+        requestHeaders.append('OrgMan_SessionUid', this.cookieService.getCookie('OrgMan_SessionUid'));
 
+        const requestOptions = new RequestOptions({headers: requestHeaders});
+
+        let promise = new Promise((resolve, reject) => {
+            this.http.delete("http://www.orgman.ch:81/api/meeting/" + uid, requestOptions).toPromise()
+            .then((response) => {
+                resolve(response['_body']);
+            }).catch((response) => {
+                reject(response['_body']);
+            });
+        });
+
+        return promise;
     }
 }
