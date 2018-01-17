@@ -29,25 +29,46 @@ export class CalendarService {
         return promise;
     }
 
-    // getByUid(uid){
-    //     let promise = new Promise((resolve, reject) => {
-    //         this.http.get("").toPromise()
-    //         .then((response) => {
-    //             resolve(response);
-    //         }).catch((response) => {
-    //             reject(response);
-    //         });
-    //     });
+    getByUid(uid){
+        const requestHeaders = new Headers();
+        
+        requestHeaders.append('OrgMan_SessionUid', this.cookieService.getCookie('OrgMan_SessionUid'));
 
-    //     return promise;
-    // }
+        const requestOptions = new RequestOptions({headers: requestHeaders});
+
+        let promise = new Promise((resolve, reject) => {
+            this.http.get("http://www.orgman.ch:81/api/meeting/" + uid, requestOptions).toPromise()
+            .then((response) => {
+                resolve(response['_body']);
+            }).catch((response) => {
+                reject(response['_body']);
+            });
+        });
+
+        return promise;
+    }
 
     put() {
 
     }
 
-    post() {
+    post(event) {
+        const requestHeaders = new Headers();
+        
+        requestHeaders.append('OrgMan_SessionUid', this.cookieService.getCookie('OrgMan_SessionUid'));
 
+        const requestOptions = new RequestOptions({headers: requestHeaders});
+
+        let promise = new Promise((resolve, reject) => {
+            this.http.post("http://www.orgman.ch:81/api/meeting",event, requestOptions).toPromise()
+            .then((response) => {
+                resolve(response['_body']);
+            }).catch((response) => {
+                reject(response['_body']);
+            });
+        });
+
+        return promise;
     }
 
     delete(uid) {

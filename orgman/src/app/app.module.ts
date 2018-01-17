@@ -72,6 +72,7 @@ import {ToolbarModule} from 'primeng/primeng';
 import {TooltipModule} from 'primeng/primeng';
 import {TreeModule} from 'primeng/primeng';
 import {TreeTableModule} from 'primeng/primeng';
+import {ConfirmationService} from 'primeng/primeng';
 
 import {AppComponent} from './app.component';
 import {AppMenuComponent, AppSubMenuComponent} from './app.menu.component';
@@ -85,6 +86,7 @@ import {AddressComponent} from './orgman/view/address.component';
 import {AddressDetailComponent} from './orgman/view/addressdetail.component';
 import {LoginComponent} from './orgman/view/login.component';
 import {CalendarComponent} from './orgman/view/calendar.component';
+import {CalendarDetailComponent} from './orgman/view/calendardetail.component';
 
 import {BreadcrumbService} from './breadcrumb.service';
 
@@ -180,7 +182,8 @@ import {AddressService}from './orgman/service/addressService';
         AddressComponent,
         AddressDetailComponent,
         LoginComponent,
-        CalendarComponent
+        CalendarComponent,
+        CalendarDetailComponent
     ],
     providers: [
         {provide: LocationStrategy, useClass: HashLocationStrategy},
@@ -190,7 +193,8 @@ import {AddressService}from './orgman/service/addressService';
         CalendarService,
         AddressService,
         LoginRouteGuard,
-        Location
+        Location,
+        ConfirmationService
     ],
     bootstrap: [AppComponent]
 })
