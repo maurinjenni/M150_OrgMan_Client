@@ -1,4 +1,5 @@
-import {Component, AfterViewInit, ElementRef, Renderer, ViewChild, OnDestroy} from '@angular/core';
+import { Router, NavigationEnd } from '@angular/router';
+import { Component, AfterViewInit, ElementRef, Renderer, ViewChild, OnDestroy } from '@angular/core';
 import {BreadcrumbService} from './breadcrumb.service';
 
 enum MenuOrientation {
@@ -53,11 +54,30 @@ export class AppComponent implements AfterViewInit, OnDestroy {
 
     menuHoverActive: boolean;
 
+    isLoggedIn: boolean;
+
     @ViewChild('layoutContainer') layourContainerViewChild: ElementRef;
 
     @ViewChild('layoutMenuScroller') layoutMenuScrollerViewChild: ElementRef;
 
-    constructor(public renderer: Renderer) {}
+    constructor(public renderer: Renderer, private router: Router) {
+        this.router.events.subscribe((e) => {
+            if (e instanceof NavigationEnd) {
+                const urlSlice = e.url.toString().substr(0, 10);
+                if (urlSlice.indexOf('login') !== -1) {
+                    this.isLoggedIn = false;
+                    if (this.isDesktop()) {
+                        this.staticMenuDesktopInactive = true; } else {
+                        this.staticMenuMobileActive = false; }
+                } else {
+                    this.isLoggedIn = true;
+                    if (this.isDesktop()) {
+                        this.staticMenuDesktopInactive = false; } else {
+                        this.staticMenuMobileActive = false; }
+                }
+            }
+        });
+    }
 
     ngAfterViewInit() {
         this.layoutContainer = <HTMLDivElement> this.layourContainerViewChild.nativeElement;

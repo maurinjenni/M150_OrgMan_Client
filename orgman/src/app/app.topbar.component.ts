@@ -1,3 +1,4 @@
+import { Router, NavigationEnd } from '@angular/router';
 import {Component} from '@angular/core';
 import {AppComponent} from './app.component';
 
@@ -10,7 +11,7 @@ import {AppComponent} from './app.component';
             </div>
 
             <div class="topbar-right">
-                <a id="menu-button" href="#" (click)="app.onMenuButtonClick($event)">
+                <a *ngIf="isLoggedIn" id="menu-button" href="#" (click)="app.onMenuButtonClick($event)">
                     <i></i>
                 </a>
             </div>
@@ -19,6 +20,19 @@ import {AppComponent} from './app.component';
 })
 export class AppTopbarComponent {
 
-    constructor(public app: AppComponent) {}
+    isLoggedIn: boolean;
+
+    constructor(public app: AppComponent, private router: Router) {
+         this.router.events.subscribe((e) => {
+            if (e instanceof NavigationEnd) {
+                const urlSlice = e.url.toString().substr(0, 10);
+                if (urlSlice.indexOf('login') !== -1) {
+                    this.isLoggedIn = false;
+                } else {
+                    this.isLoggedIn = true;
+                }
+            }
+        });
+    }
 
 }

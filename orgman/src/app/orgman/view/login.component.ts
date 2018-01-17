@@ -39,9 +39,4 @@ export class LoginComponent implements OnInit {
             this.router.navigateByUrl('login');
         });
     }
-
-    OnPasswordForgottenClick() {
-        this.authenticationService.logout();
-        this.router.navigateByUrl('login');
-    }
 }
