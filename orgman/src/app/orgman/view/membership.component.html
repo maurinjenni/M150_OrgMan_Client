@@ -1,0 +1,28 @@
+<div class="ui-g">
+    <p-dialog [header]="dialogTitle" [(visible)]="displayDialog" modal="true">
+        Content
+    </p-dialog>
+
+    <div class="ui-g-12 ui-fluid">
+        <div class="card">
+            <div class="ui-g">
+                <div class="ui-g-12 ui-lg-6">
+                    <button type="button" label="reload membership data" icon="ui-icon-refresh" pButton (click)="loadAllMembershipData()"></button>
+                </div>
+                <div class="ui-g-12 ui-lg-6">
+                    <button type="button" label="create new membership" icon="ui-icon-create" pButton (click)="createNewMembership()"></button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="ui-g-12">
+        <div class="card">
+            <p-dataTable #dt [value]="membershipData" selectionMode="single" [(selection)]="selectedMembership" 
+                dataKey="Id" [paginator]="true" [rows]="10" [responsive]="true" (onRowDblclick)="handleRowDblclick($event)" [loading]="loading">
+                <p-header>Membership</p-header>
+                <p-column field="Code" header="Code" [sortable]="true"></p-column>
+                <p-column field="Title" header="Title" [sortable]="true"></p-column>
+            </p-dataTable>
+        </div>
+    </div>
+</div>
