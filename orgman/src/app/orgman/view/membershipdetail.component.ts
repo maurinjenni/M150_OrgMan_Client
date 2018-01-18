@@ -1,10 +1,12 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { SelectItem, MenuItem, ButtonModule, ConfirmDialogModule, ConfirmationService } from 'primeng/primeng';
+import {MultiSelectModule} from 'primeng/primeng';
 import {BreadcrumbService} from '../../breadcrumb.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import { Console } from '@angular/core/src/console';
 import {MembershipService} from '../service/membershipService';
 import { DatePipe } from '@angular/common';
+
 
 @Component({
     templateUrl: './membershipdetail.component.html',
@@ -36,6 +38,12 @@ export class MembershipDetailComponent implements OnInit, OnDestroy {
 
     ngOnInit() {
         this.membershipDetail = {};
+
+        this.mandatories = [
+            {label: 'Mr', value: 'e91019da-26c8-b201-1385-0011f6c365e9'},
+            {label: 'Mandatory2', value: 'M2'},
+            {label: 'Mandatory3', value: 'M3'}
+        ];
 
         this.sub = this.route.params.subscribe(params => {
             const param = params['param'];
@@ -84,15 +92,6 @@ export class MembershipDetailComponent implements OnInit, OnDestroy {
         });
     }
 
-    confirmSaveNewMembership() {
-        this.confirmationService.confirm({
-            message: 'Save new membership?',
-            accept: ()  => {
-                this.router.navigate(['/membership']);
-            }
-        });
-    }
-
     changeToEditMode() {
         this.editMode = true;
     }
@@ -112,6 +111,13 @@ export class MembershipDetailComponent implements OnInit, OnDestroy {
             message: 'Save your changes?',
             accept: ()  => {
                 if (this.createNewMembershipMode) {
+                    this.membershipService.put(this.membershipDetail).then((response) => {
+                        const membershipUid = JSON.parse(response.toString());
+
+                        this.router.navigate(['/membership', membershipUid]);
+                    }).catch((response) => {
+                        console.log(response);
+                    });
 
                 }else {
                     this.membershipService.post(this.membershipDetail).then((response) => {
