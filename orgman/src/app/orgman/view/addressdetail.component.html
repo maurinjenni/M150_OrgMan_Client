@@ -22,7 +22,7 @@
                     <button type="button" label="discard changes and return" icon="ui-icon-arrow-back" pButton (click)="confirmDiscardAndReturn()"></button>
                 </div>
                 <div class="ui-g-12 ui-lg-6">   
-                    <button type="button" label="save address" icon="ui-icon-check" pButton (click)="confirmSaveNewAddress()"></button>
+                    <button type="button" label="save address" icon="ui-icon-check" pButton (click)="confirmSaveChanges()"></button>
                 </div>
             </div>
         </div>
@@ -32,101 +32,161 @@
             <!-- Left Side -->
             <div class="card">
                 <h1>Mandatory</h1>
+
                 <div class="ui-g form-group">
                     <div class="ui-g-12">
-                        <p-dropdown [options]="mandatories" optionLabel="titel" [autoWidth]="false" placeholder="Select mandatory..." [disabled]="!editMode"></p-dropdown>
+                        <span class="md-inputfield">
+                            <p-multiSelect [disabled]="!editMode" [options]="mandators" [(ngModel)]="currentAddress.Person.MandatorUIDs" defaultLabel="Mandators"></p-multiSelect>
+                        </span>
+                        </div>
+                        <div class="ui-g-12">
+                            <span class="md-inputfield">
+                            </span>
                     </div>
-                </div> 
+                </div>
+            </div>
+
+            <div class="card">
                 <h1>Person</h1>
                 <div class="ui-g form-group">
+                    <div class="ui-g-12">
+                        <span class="md-inputfield">
+                            <p-dropdown [disabled]="!editMode" [autoWidth]="false" [options]="saulations" [(ngModel)]="currentAddress.Person.SalutationUID" placeholder="Select a Saluation" dataKey="value"></p-dropdown>
+                        </span>
+                    </div>
+                    
                     <div class="ui-g-12 ui-md-6">
                         <span class="md-inputfield">
-                            <input type="text" [(ngModel)]="currentAddress.firstname" pInputText>
+                            <input type="text" [(ngModel)]="currentAddress.Person.Firstname" pInputText>
                             <label>Firstname</label>
                         </span>
                     </div>
                     <div class="ui-g-12 ui-md-6">
                         <span class="md-inputfield">
-                            <input type="text" [(ngModel)]="currentAddress.lastname" pInputText>
+                            <input type="text" [(ngModel)]="currentAddress.Person.Lastname" pInputText>
                             <label>Lastname</label>
                         </span>
                     </div>
                     <div class="ui-g-12">
                         <span class="md-inputfield">
-                            <input type="text" pInputText>
+                            <input type="text" [(ngModel)]="currentAddress.Company" pInputText>
                             <label>Company</label>
                         </span>
                     </div>
                     <div class="ui-g-12 ui-md-8">
                         <span class="md-inputfield">
-                            <input type="text" pInputText>
+                            <input type="text" [(ngModel)]="currentAddress.Adress.Street" pInputText>
                             <label>Street</label>
                         </span>
                     </div>
                     <div class="ui-g-12 ui-md-4">
                         <span class="md-inputfield">
-                            <input type="text" pInputText>
+                            <input type="text" [(ngModel)]="currentAddress.Adress.HouseNumber" pInputText>
                             <label>Housenumber</label>
                         </span>
                     </div>
                     <div class="ui-g-12">
                         <span class="md-inputfield">
-                            <input type="text" pInputText>
+                            <input type="text" [(ngModel)]="currentAddress.Adress.Additional" pInputText>
                             <label>Additional</label>
                         </span>
                     </div>
                     <div class="ui-g-12 ui-md-4">
                         <span class="md-inputfield">
-                            <input type="text" pInputText>
+                            <input type="text" [(ngModel)]="currentAddress.Adress.PostCode" pInputText>
                             <label>Postcode</label>
                         </span>
                     </div>
                     <div class="ui-g-12 ui-md-8">
                         <span class="md-inputfield">
-                            <input type="text" pInputText>
+                            <input type="text" [(ngModel)]="currentAddress.Adress.City" pInputText>
                             <label>City</label>
                         </span>
                     </div>
-                    <div class="ui-g-12">
+                    <!-- <div class="ui-g-12">
                         <span class="md-inputfield">
-                            <p-autoComplete [(ngModel)]="country" [suggestions]="filteredCountries" (completeMethod)="filterCountry($event)" field="name" [size]="30"
+                            <p-autoComplete [(ngModel)]="currentAddress.Adress.CountryUID" [suggestions]="filteredCountries" (completeMethod)="filterCountry($event)" field="name" [size]="30"
                              [dropdown]="true" [forceSelection]="true"></p-autoComplete>
                              <label>Country</label>
                         </span>
-                    </div>
+                    </div> -->
                     <div class="ui-g-12">
                         <span class="md-inputfield">
-                            <p-calendar></p-calendar>
+                            <p-calendar [(ngModel)]="currentAddress.BirthDate" [inline]="false"></p-calendar>
                             <label>Birthdate</label>
                         </span>
                     </div>
                     <div class="ui-g-12">
                         <span class="md-inputfield">
-                            <textarea pInputTextarea placeholder="Comment"></textarea>
+                            <textarea pInputTextarea [(ngModel)]="currentAddress.Comment" placeholder="Comment"></textarea>
                         </span>
                     </div>
                 </div>            
+            </div>
+
+            <div class="card">
+                <div class="ui-g form-group">
+                        <h1>Memberinformation</h1>
+                        <div class="ui-g-12">
+                            <span class="md-inputfield">
+                                <p-calendar [(ngModel)]="currentAddress.MemberInformation.EntryDate" [inline]="false"></p-calendar>
+                                <label>EntryDate</label>
+                            </span>
+                        </div>
+        
+                        <div class="ui-g-12">
+                            <span class="md-inputfield">
+                                <p-calendar [(ngModel)]="currentAddress.MemberInformation.ExitDate" [inline]="false"></p-calendar>
+                                <label>ExitDate</label>
+                            </span>
+                        </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h1>Meberships</h1>
+                <p-dataTable [value]="currentAddress.MemberInformation.MemberInformationToMemberships" *ngIf="!editMode">
+                    <p-column field="Membership.Code" header="Code"></p-column>
+                    <p-column field="Membership.Title" header="Title"></p-column>
+                </p-dataTable>
+                <div class="ui-g form-group" *ngIf="editMode">
+                    <div class="ui-g-12">
+                        <span class="md-inputfield">
+                            <p-multiSelect [disabled]="!editMode" [options]="memberships" [(ngModel)]="currentAddress.MemberInformation.MembershipUIDs" defaultLabel="Memberships"></p-multiSelect>
+                        </span>
+                    </div>
+                    <div class="ui-g-12">
+                        <span class="md-inputfield">
+                        </span>
+                    </div>
+                </div>
             </div>
         </div>
             
         <div class="ui-g-12 ui-lg-6">
             <!-- Right Side -->
             <div class="card">
-                <h1>TextBox</h1>
-                <div class="ui-g form-group">
-                    <div class="ui-g-12 ui-md-6">
-                        <span class="md-inputfield">
-                            <input type="text" pInputText>
-                            <label>Firstname</label>
-                        </span>
-                     </div>
-                     <div class="ui-g-12 ui-md-6">
-                        <span class="md-inputfield">
-                            <input type="text" pInputText>
-                            <label>Lastname</label>
-                         </span>
-                    </div>
-                </div>            
+                <h1>Phones</h1>
+                <p-dataTable [value]="currentAddress.Phones" [editable]="editMode">
+                    <p-column field="Number" header="Number" [editable]="editMode"></p-column>
+                    <p-column field="IsMain" header="IsMain" [editable]="editMode">
+                        <ng-template let-row="rowData" let-index="rowIndex" let-col pTemplate="body">
+                                <p-checkbox name="IsMain" binary="true" [(ngModel)]="row[col.field]" [disabled]="!editMode">></p-checkbox>
+                        </ng-template>
+                    </p-column>
+                </p-dataTable>
+            </div>
+
+            <div class="card">
+                <h1>Emails</h1>
+                <p-dataTable [value]="currentAddress.Emails" [editable]="editMode">
+                    <p-column field="EmailAdress" header="EmailAdress" [editable]="editMode"></p-column>
+                    <p-column field="IsMain" header="IsMain" [editable]="editMode">
+                        <ng-template let-row="rowData" let-index="rowIndex" let-col pTemplate="body">
+                            <p-checkbox name="IsMain" binary="true" [(ngModel)]="row[col.field]" [disabled]="!editMode"></p-checkbox>
+                        </ng-template>
+                    </p-column>
+                </p-dataTable>
             </div>
         </div>
     </fieldset>

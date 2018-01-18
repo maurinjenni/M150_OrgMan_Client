@@ -11,6 +11,10 @@ export class AddressService {
         private cookieService : CookieService) {}  
 
     getBySearchText(searchtext : string){
+        if(searchtext == undefined){
+            searchtext = "";
+        }
+        
         let requestHeaders = new Headers();
 
         requestHeaders.append('OrgMan_SessionUid', this.cookieService.getCookie('OrgMan_SessionUid'));
@@ -37,7 +41,7 @@ export class AddressService {
         var requestOptions = new RequestOptions({headers: requestHeaders})
         
         let promise = new Promise((resolve, reject) => {
-            this.http.get("http://www.orgman.ch:81/api/adress" + uid, requestOptions).toPromise()
+            this.http.get("http://www.orgman.ch:81/api/adress/" + uid, requestOptions).toPromise()
             .then((response) => {
                 resolve(response["_body"]);
             }).catch((response) => {
@@ -49,15 +53,60 @@ export class AddressService {
     }
 
 
-    put(){
+    put(adress){
+        let requestHeaders = new Headers();
+        
+        requestHeaders.append('OrgMan_SessionUid', this.cookieService.getCookie('OrgMan_SessionUid'));
 
+        var requestOptions = new RequestOptions({headers: requestHeaders})
+        
+        let promise = new Promise((resolve, reject) => {
+            this.http.put("http://www.orgman.ch:81/api/adress",adress, requestOptions).toPromise()
+            .then((response) => {
+                resolve(response["_body"]);
+            }).catch((response) => {
+                reject(response["_body"]);
+            });
+        });
+
+        return promise;
     }
 
-    post(){
+    post(adress){
+        let requestHeaders = new Headers();
+        
+        requestHeaders.append('OrgMan_SessionUid', this.cookieService.getCookie('OrgMan_SessionUid'));
 
+        var requestOptions = new RequestOptions({headers: requestHeaders})
+        
+        let promise = new Promise((resolve, reject) => {
+            this.http.post("http://www.orgman.ch:81/api/adress",adress, requestOptions).toPromise()
+            .then((response) => {
+                resolve(response["_body"]);
+            }).catch((response) => {
+                reject(response["_body"]);
+            });
+        });
+
+        return promise;
     }
 
     delete(uid){
+        let requestHeaders = new Headers();
+        
+        requestHeaders.append('OrgMan_SessionUid', this.cookieService.getCookie('OrgMan_SessionUid'));
 
+        var requestOptions = new RequestOptions({headers: requestHeaders})
+        
+        let promise = new Promise((resolve, reject) => {
+            this.http.delete("http://www.orgman.ch:81/api/adress/" + uid, requestOptions).toPromise()
+            .then((response) => {
+                resolve(response["_body"]);
+            }).catch((response) => {
+                reject(response["_body"]);
+            });
+        });
+
+        return promise;
     }
 }

@@ -97,6 +97,7 @@ import {LoginRouteGuard} from './orgman/service/loginRouteGuard';
 import {CalendarService} from './orgman/service/calendarService';
 import {AddressService} from './orgman/service/addressService';
 import {MembershipService} from './orgman/service/membershipService';
+import {MandatorService} from './orgman/service/mandatorService';
 
 @NgModule({
     imports: [
@@ -198,7 +199,8 @@ import {MembershipService} from './orgman/service/membershipService';
         AddressService,
         MembershipService,
         LoginRouteGuard,
-        Location
+        Location,
+        MandatorService
         ],
     bootstrap: [AppComponent]
 })

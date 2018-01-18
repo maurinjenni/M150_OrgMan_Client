@@ -29,7 +29,7 @@ export class AddressComponent implements OnInit {
     }
 
     handleRowDblclick(event) {
-        this.router.navigate(['/address', event.data.Id]);
+        this.router.navigate(['/address', event.data.UID]);
     }
 
     resetDatatable(dt: DataTable) {
