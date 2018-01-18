@@ -37,7 +37,7 @@ export class AddressService {
         var requestOptions = new RequestOptions({headers: requestHeaders})
         
         let promise = new Promise((resolve, reject) => {
-            this.http.get("http://www.orgman.ch:81/api/" + uid, requestOptions).toPromise()
+            this.http.get("http://www.orgman.ch:81/api/adress" + uid, requestOptions).toPromise()
             .then((response) => {
                 resolve(response["_body"]);
             }).catch((response) => {

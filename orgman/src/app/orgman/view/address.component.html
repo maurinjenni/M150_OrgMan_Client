@@ -3,7 +3,7 @@
         <div class="card">
             <div class="ui-g">
                 <div class="ui-g-12 ui-lg-6">
-                    <button type="button" label="reload address data" icon="ui-icon-refresh" pButton (click)="loadAllAddressData()"></button>
+                    <button type="button" label="search address data" icon="ui-icon-search" pButton (click)="loadAllAddressData()"></button>
                 </div>
                 <div class="ui-g-12 ui-lg-6">
                     <button type="button" label="create new address" icon="ui-icon-create" pButton (click)="navigateToNewAddress()"></button>
@@ -37,7 +37,7 @@
                 <p-column field="Lastname" header="Lastname" [sortable]="true" [filter]="true" filterMatchMode="contains"></p-column>
                 <p-column field="Street" header="Street" [sortable]="true" [filter]="true" filterMatchMode="contains"></p-column>
                 <p-column field="HouseNumber" header="House-Number" [sortable]="true" [filter]="true" filterMatchMode="contains"></p-column>
-                <p-column field="Postcode" header="Postcode" [sortable]="true" [filter]="true" filterMatchMode="contains"></p-column>
+                <p-column field="Postcode" header="PostCode" [sortable]="true" [filter]="true" filterMatchMode="contains"></p-column>
                 <p-column field="City" header="City" [sortable]="true" [filter]="true" filterMatchMode="contains"></p-column>
                 <p-column field="IsMember" header="Is Member" [sortable]="true" [filter]="true" filterMatchMode="contains"></p-column>
             </p-dataTable>

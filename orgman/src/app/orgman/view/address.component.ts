@@ -2,6 +2,7 @@ import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {TreeNode, DataTable} from 'primeng/primeng';
 import {BreadcrumbService} from '../../breadcrumb.service';
 import { Router } from '@angular/router';
+import { AddressService } from '../service/addressService';
 
 @Component({
     templateUrl: './address.component.html',
@@ -17,7 +18,7 @@ export class AddressComponent implements OnInit {
 
     loading: boolean;
 
-    constructor(private breadcrumbService: BreadcrumbService, private router: Router) {
+    constructor(private breadcrumbService: BreadcrumbService, private router: Router, private addressService: AddressService) {
         this.breadcrumbService.setItems([
             { label: 'Addressmanagement'}
         ]);
@@ -39,20 +40,13 @@ export class AddressComponent implements OnInit {
     loadAllAddressData() {
         this.loading = true;
         setTimeout(() => {
-            this.searchResult = [
-                {Id: 1, Firstname: 'Test', Lastname: 'Test', Street: 'Test',
-                HouseNumber: 'Test', Postcode: 'Test', City: 'Test', IsMember: 'Test'},
-                {Id: 2, Firstname: 'Test', Lastname: 'Test', Street: 'Test',
-                HouseNumber: 'Test', Postcode: 'Test', City: 'Test', IsMember: 'Test'},
-                {Id: 3, Firstname: 'Hallo', Lastname: 'Test', Street: 'Test',
-                HouseNumber: 'Test', Postcode: 'Test', City: 'Test', IsMember: 'Test'},
-                {Id: 4, Firstname: 'Test', Lastname: 'Test', Street: 'Hallo',
-                HouseNumber: 'Test', Postcode: 'Test', City: 'Test', IsMember: 'Test'},
-                {Id: 5, Firstname: 'Test', Lastname: 'Test', Street: 'Test',
-                HouseNumber: 'Test', Postcode: 'Test', City: 'Test', IsMember: 'Test'},
-                {Id: 6, Firstname: 'Test', Lastname: 'Test', Street: 'Test',
-                HouseNumber: 'Test', Postcode: 'Test', City: 'Test', IsMember: 'Test'}
-            ];
+            this.addressService.getBySearchText(this.globalsearchtext).then((response) => {
+                let objects = JSON.parse(response.toString());
+    
+                this.searchResult = objects;
+            }).catch((response) => {
+                console.log(response);
+            });
             this.loading = false;
         }, 1000);
     }
