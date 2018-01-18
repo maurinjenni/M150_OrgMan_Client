@@ -20,7 +20,7 @@ import { DatePipe } from '@angular/common';
         }
     `],
     encapsulation: ViewEncapsulation.None,
-    providers:[ConfirmationService]
+    providers: [ConfirmationService]
 })
 export class CalendarComponent implements OnInit {
 
@@ -30,7 +30,7 @@ export class CalendarComponent implements OnInit {
 
     displayEventDetail: boolean;
 
-    eventDetail : any;
+    eventDetail: any;
 
     constructor(private breadcrumbService: BreadcrumbService,
     private calendarService: CalendarService,
@@ -64,19 +64,19 @@ export class CalendarComponent implements OnInit {
         this.scheduleHeader = { left: 'prev,next today', center: 'title', right: 'month,agendaWeek,agendaDay'};
     }
 
-    handlEventclick(event){
+    handlEventclick(event) {
         this.router.navigate(['/calendar', event.calEvent.id]);
     }
 
-    handleDayclick(event){
-        let datePipe = new DatePipe("en-US");
+    handleDayclick(event) {
+        const datePipe = new DatePipe('en-US');
 
-        let navigationExtras: NavigationExtras = {
+        const navigationExtras: NavigationExtras = {
             queryParams: {
-                "startdate": datePipe.transform(event.date._d, 'MM/dd/yyyy HH:mm') 
+                'startdate': datePipe.transform(event.date._d, 'MM/dd/yyyy HH:mm')
             }
         };
 
-        this.router.navigate(['/calendar', "new"], navigationExtras);
+        this.router.navigate(['/calendar', 'new'], navigationExtras);
     }
 }

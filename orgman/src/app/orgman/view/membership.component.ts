@@ -31,7 +31,7 @@ export class MembershipComponent implements OnInit {
         this.loading = true;
         setTimeout(() => {
             this.membershipService.get().then((response) => {
-                var objects = JSON.parse(response.toString());
+                const objects = JSON.parse(response.toString());
 
                 this.membershipData = objects;
             }).catch((response) => {

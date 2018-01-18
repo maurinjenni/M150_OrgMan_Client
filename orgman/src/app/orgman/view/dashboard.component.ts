@@ -38,44 +38,35 @@ export class DashboardComponent implements OnInit {
 
     searchText: string;
 
-    constructor(private breadcrumbService: BreadcrumbService, private router: Router, private addressService : AddressService, private calendarService: CalendarService ) {
+    constructor(private breadcrumbService: BreadcrumbService, private router: Router, private addressService: AddressService,
+        private calendarService: CalendarService ) {
       this.breadcrumbService.setItems([
         {label: ''},
       ]); }
 
     ngOnInit() {
 
-        // this.events = [
-        //     '12.12.12: Test',
-        //     '12.12.12: Test',
-        //     '12.12.12: Test',
-        //     '12.12.12: Test',
-        //     '12.12.12: Test',
-        //     '12.12.12: Test',
-        //     '12.12.12: Test',
-        //     '12.12.12: Test',
-        //     '12.12.12: Test',
-        //     '12.12.12: Test'
-        //   ];
-        this.events = []
+        this.events = [];
         this.searchResult = [];
 
         this.calendarService.get().then((response) => {
             const object = JSON.parse(response.toString());
             object.forEach(element => {
-                let datePipe = new DatePipe('en-US');
+                const datePipe = new DatePipe('en-US');
 
-                if(datePipe.transform(element.StartDate, 'dd.MM.yyyy') == datePipe.transform(element.EndDate, 'dd.MM.yyyy')){
+                if (datePipe.transform(element.StartDate, 'dd.MM.yyyy') === datePipe.transform(element.EndDate, 'dd.MM.yyyy')) {
                     this.events.push(
-                    datePipe.transform(element.StartDate, 'dd.MM.yyyy hh:mm') + " - " + datePipe.transform(element.EndDate, 'hh:mm') + " : " + element.Title);
+                    datePipe.transform(element.StartDate, 'dd.MM.yyyy hh:mm') + ' - '
+                    + datePipe.transform(element.EndDate, 'hh:mm') + ' : ' + element.Title);
                 }else {
                     this.events.push(
-                        datePipe.transform(element.StartDate, 'dd.MM.yyyy hh:mm') + " - " + datePipe.transform(element.EndDate, 'dd.MM.yyyy hh:mm') + " : " + element.Title);
+                        datePipe.transform(element.StartDate, 'dd.MM.yyyy hh:mm') + ' - '
+                        + datePipe.transform(element.EndDate, 'dd.MM.yyyy hh:mm') + ' : ' + element.Title);
                     }
                 });
         }).catch((response) => {
             console.log(response);
-        })
+        });
     }
 
     loadSearchResults() {
@@ -83,7 +74,7 @@ export class DashboardComponent implements OnInit {
         setTimeout(() => {
             this.addressService.getBySearchText(this.searchText).then((response) => {
                 this.searchResult = [];
-                var object = JSON.parse(response.toString());
+                const object = JSON.parse(response.toString());
 
                 object.forEach(element => {
                     this.searchResult.push({
@@ -93,24 +84,8 @@ export class DashboardComponent implements OnInit {
                     });
                 });
             }).catch((response) => {
-                console.log(response)
+                console.log(response);
             });
-
-            // this.searchResult = [
-            //     {Id: 1, Firstname: 'Test', Lastname: 'Test', Street: 'Test',
-            //     HouseNumber: 'Test', Postcode: 'Test', City: 'Test', IsMember: 'Test'},
-            //     {Id: 2, Firstname: 'Test', Lastname: 'Test', Street: 'Test',
-            //     HouseNumber: 'Test', Postcode: 'Test', City: 'Test', IsMember: 'Test'},
-            //     {Id: 3, Firstname: 'Hallo', Lastname: 'Test', Street: 'Test',
-            //     HouseNumber: 'Test', Postcode: 'Test', City: 'Test', IsMember: 'Test'},
-            //     {Id: 4, Firstname: 'Test', Lastname: 'Test', Street: 'Hallo',
-            //     HouseNumber: 'Test', Postcode: 'Test', City: 'Test', IsMember: 'Test'},
-            //     {Id: 5, Firstname: 'Test', Lastname: 'Test', Street: 'Test',
-            //     HouseNumber: 'Test', Postcode: 'Test', City: 'Test', IsMember: 'Test'},
-            //     {Id: 6, Firstname: 'Test', Lastname: 'Test', Street: 'Test',
-            //     HouseNumber: 'Test', Postcode: 'Test', City: 'Test', IsMember: 'Test'}
-            // ];
-            
             this.loading = false;
         }, 1000);
     }

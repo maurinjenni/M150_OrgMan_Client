@@ -39,16 +39,15 @@ export class AddressComponent implements OnInit {
 
     loadAllAddressData() {
         this.loading = true;
-        setTimeout(() => {
-            this.addressService.getBySearchText(this.globalsearchtext).then((response) => {
-                let objects = JSON.parse(response.toString());
-    
-                this.searchResult = objects;
-            }).catch((response) => {
-                console.log(response);
-            });
+        this.addressService.getBySearchText(this.globalsearchtext).then((response) => {
+            const objects = JSON.parse(response.toString());
+
+            this.searchResult = objects;
             this.loading = false;
-        }, 1000);
+        }).catch((response) => {
+            console.log(response);
+        });
+
     }
 
     navigateToNewAddress() {

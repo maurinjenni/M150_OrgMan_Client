@@ -19,11 +19,10 @@
         </p-panel>
     </div>
     <div class="ui-g-12 ui-lg-6 task-list">
-        <p-panel header="Next {{events.length}} Events">
+        <p-panel header="{{events.length}} Events">
             <ul>
                 <li *ngFor="let event of events">
                     <span class="task-name">{{event}}</span>
-                    <i class="material-icons">&#xE89F;</i>
                 </li>
             </ul>
         </p-panel>

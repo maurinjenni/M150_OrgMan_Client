@@ -9,7 +9,7 @@ import {AuthenticationService} from './orgman/service/authenticationService';
         <div class="profile" [ngClass]="{'profile-expanded':active}">
             <a href="#" (click)="onClick($event)">
                 <img class="profile-image" src="assets/layout/images/avatar.png" />
-                <span class="profile-name">Jane Williams</span>
+                <span class="profile-name">Patrick Joller</span>
                 <i class="material-icons">keyboard_arrow_down</i>
             </a>
         </div>
@@ -46,14 +46,14 @@ export class AppInlineProfileComponent {
     active: boolean;
 
     constructor(private authenticationService: AuthenticationService,
-    private router: Router) {}  
+    private router: Router) {}
 
     onClick(event) {
         this.active = !this.active;
         event.preventDefault();
     }
 
-    logout(event){
+    logout(event) {
         this.authenticationService.logout();
     }
 }

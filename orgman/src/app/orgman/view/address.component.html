@@ -30,7 +30,7 @@
         <div class="card">
             <h1>Searchresults</h1>
             <p-dataTable #dt [value]="searchResult" selectionMode="single" [(selection)]="selectedAddress" 
-                dataKey="Id" [paginator]="true" [rows]="10" [responsive]="true" (onRowDblclick)="handleRowDblclick($event)"
+                dataKey="UID" [paginator]="true" [rows]="10" [responsive]="true" (onRowDblclick)="handleRowDblclick($event)"
                 [globalFilter]="gb" [loading]="loading">
                 <p-header>Address</p-header>
                 <p-column field="Firstname" header="Firstname" [sortable]="true" [filter]="true" filterMatchMode="contains"></p-column>

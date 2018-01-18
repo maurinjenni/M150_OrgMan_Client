@@ -24,11 +24,11 @@ export class CalendarDetailComponent implements OnInit, OnDestroy {
     private sub: any;
 
     mandatories: SelectItem[];
-    
+
     eventDetail: any;
-    
+
     editMode = false;
-    
+
     createNewEventMode = false;
 
     constructor(private breadcrumbService: BreadcrumbService, private route: ActivatedRoute,
@@ -48,7 +48,7 @@ export class CalendarDetailComponent implements OnInit, OnDestroy {
                 this.createNewEventMode = true;
                 this.editMode = true;
 
-               
+
             } else {
                 this.currentEventId = param;
                 this.editMode = false;
@@ -56,8 +56,8 @@ export class CalendarDetailComponent implements OnInit, OnDestroy {
             }
         });
 
-        this.route.queryParams.subscribe((params) => {           
-            this.eventDetail.StartDate = params["startdate"];
+        this.route.queryParams.subscribe((params) => {
+            this.eventDetail.StartDate = params['startdate'];
         });
 
         this.breadcrumbService.setItems([
@@ -70,18 +70,18 @@ export class CalendarDetailComponent implements OnInit, OnDestroy {
         this.sub.unsubscribe();
     }
 
-    loadevent(uid){
-        let datePipe = new DatePipe('en-US');
+    loadevent(uid) {
+        const datePipe = new DatePipe('en-US');
 
         this.calendarService.getByUid(uid).then((response) => {
             const object = JSON.parse(response.toString());
             this.eventDetail = object;
-            
+
             this.eventDetail.StartDate = new Date(datePipe.transform(this.eventDetail.StartDate, 'MM/dd/yyyy HH:mm'));
             this.eventDetail.EndDate = new Date(datePipe.transform(this.eventDetail.EndDate, 'MM/dd/yyyy HH:mm'));
         }).catch((response) => {
             console.log(response);
-        })
+        });
     }
 
     // confirmdialogs: new event
@@ -112,37 +112,37 @@ export class CalendarDetailComponent implements OnInit, OnDestroy {
         this.confirmationService.confirm({
             message: 'Save your changes?',
             accept: ()  => {
-                if(this.createNewEventMode){
+                if (this.createNewEventMode) {
                     this.calendarService.put(this.eventDetail).then((response) => {
-                        let datePipe = new DatePipe('en-US');
+                        const datePipe = new DatePipe('en-US');
                         const meetingUid = JSON.parse(response.toString());
                         this.router.navigate(['/calendar', meetingUid]);
                     }).catch((response) => {
                         console.log(response);
                     });
                 }else {
-                    this.calendarService.post(this.eventDetail).then((response) =>{
+                    this.calendarService.post(this.eventDetail).then((response) => {
                         const object = JSON.parse(response.toString());
                         this.editMode = false;
                         this.router.navigate(['/calendar', object.UID]);
                     }).catch((response) => {
                         console.log(response);
                     });
-                }   
+                }
             }
         });
     }
 
-    confirmDelete(){
+    confirmDelete() {
         this.confirmationService.confirm({
             message: 'Delete Event?',
             accept: ()  => {
-                this.calendarService.delete(this.eventDetail.UID).then((response) =>{
+                this.calendarService.delete(this.eventDetail.UID).then((response) => {
                     this.router.navigate(['/calendar']);
                 }).catch((response) => {
                     console.log(response);
                 });
             }
-        });  
+        });
     }
 }

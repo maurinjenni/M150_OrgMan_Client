@@ -8,23 +8,22 @@ export class MandatorService {
 
      constructor(
         private http: Http,
-        private cookieService : CookieService) {}  
+        private cookieService: CookieService) {}
 
-    get(){
+    get() {
 
-        
-        let requestHeaders = new Headers();
+        const requestHeaders = new Headers();
 
         requestHeaders.append('OrgMan_SessionUid', this.cookieService.getCookie('OrgMan_SessionUid'));
 
-        var requestOptions = new RequestOptions({headers: requestHeaders})
-        
-        let promise = new Promise((resolve, reject) => {
-            this.http.get("http://www.orgman.ch:81/api/mandator", requestOptions).toPromise()
+        const requestOptions = new RequestOptions({headers: requestHeaders});
+
+        const promise = new Promise((resolve, reject) => {
+            this.http.get('http://www.orgman.ch:81/api/mandator', requestOptions).toPromise()
             .then((response) => {
-                resolve(response["_body"]);
+                resolve(response['_body']);
             }).catch((response) => {
-                reject(response["_body"]);
+                reject(response['_body']);
             });
         });
 

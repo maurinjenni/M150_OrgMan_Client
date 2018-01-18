@@ -50,11 +50,11 @@ export class MembershipService {
 
     put(membership) {
         const requestHeaders = new Headers();
-        
+
                 requestHeaders.append('OrgMan_SessionUid', this.cookieService.getCookie('OrgMan_SessionUid'));
-        
+
                 const requestOptions = new RequestOptions({headers: requestHeaders});
-        
+
                 const promise = new Promise((resolve, reject) => {
                     this.http.put('http://www.orgman.ch:81/api/membership', membership, requestOptions).toPromise()
                     .then((response) => {
@@ -63,7 +63,7 @@ export class MembershipService {
                         reject(response['_body']);
                     });
                 });
-        
+
                 return promise;
     }
 

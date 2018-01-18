@@ -11,14 +11,14 @@ import {LoginRouteGuard} from './orgman/service/loginRouteGuard';
 import {CalendarDetailComponent} from './orgman/view/calendardetail.component';
 
 export const routes: Routes = [
-    {path: '', component: DashboardComponent},
+    {path: '', component: DashboardComponent, canActivate: [LoginRouteGuard]},
     {path: 'login', component: LoginComponent},
-    {path: 'address', component: AddressComponent},
-    {path: 'address/:param', component: AddressDetailComponent},
-    {path: 'calendar', component: CalendarComponent},
-    {path: 'calendar/:param', component: CalendarDetailComponent},
-    {path: 'membership', component: MembershipComponent},
-    {path: 'membership/:param', component: MembershipDetailComponent},
+    {path: 'address', component: AddressComponent, canActivate: [LoginRouteGuard]},
+    {path: 'address/:param', component: AddressDetailComponent, canActivate: [LoginRouteGuard]},
+    {path: 'calendar', component: CalendarComponent, canActivate: [LoginRouteGuard]},
+    {path: 'calendar/:param', component: CalendarDetailComponent, canActivate: [LoginRouteGuard]},
+    {path: 'membership', component: MembershipComponent, canActivate: [LoginRouteGuard]},
+    {path: 'membership/:param', component: MembershipDetailComponent, canActivate: [LoginRouteGuard]},
 ];
 
 export const AppRoutes: ModuleWithProviders = RouterModule.forRoot(routes);
